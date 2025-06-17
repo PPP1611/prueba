@@ -32,6 +32,16 @@ $result = $conexion->query("SELECT * FROM killer_information");
     </header>
 
     <section class="killerSection" id="serialKillersSection">
+
+        <div class="userContainer" id="userContainer">
+            <div id="filter">
+                <button id="filterIcon"><i class="bi bi-filter-square"></i></button>
+            </div>
+            <div id="user">
+                <button id="userIcon"><i class="bi bi-person-circle"></i></button>
+            </div>
+        </div>
+
         <div id="killersContainer">
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="killer">
