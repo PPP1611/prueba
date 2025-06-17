@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slideBtn = document.getElementById('slideBtn');
     const killersContainer = document.getElementById('killersContainer');
     const mastheadElement = document.querySelector('header.masthead');
