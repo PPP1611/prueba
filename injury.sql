@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-06-2025 a las 20:22:24
+-- Servidor: localhost:3306
+-- Tiempo de generación: 17-06-2025 a las 16:39:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,17 +35,18 @@ CREATE TABLE `killer_information` (
   `birth_place` varchar(255) NOT NULL,
   `period_activity` varchar(255) NOT NULL,
   `victims_number` int(3) NOT NULL,
-  `social_context` varchar(255) NOT NULL
+  `social_context` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `killer_information`
 --
 
-INSERT INTO `killer_information` (`id_asesino`, `name_killer`, `alias`, `birth_date`, `birth_place`, `period_activity`, `victims_number`, `social_context`) VALUES
-(1, 'Ted Bundy', 'El asesino de estudiantes', '24/11/1946', 'Estados Unidos', '1974-1978', 33, 'Maltratado'),
-(2, 'Pedro Alonso', 'El monstruo de los Andes', '8/10/1948', 'Colombia', '1969-1980', 300, 'Malo, muy malo'),
-(3, 'Niels Hogel', 'El angel de la muerte', '30/12/1976', 'Alemania', '2000-2005', 85, 'Se cree Dios');
+INSERT INTO `killer_information` (`id_asesino`, `name_killer`, `alias`, `birth_date`, `birth_place`, `period_activity`, `victims_number`, `social_context`, `profile_picture`) VALUES
+(1, 'Ted Bundy', 'El asesino de estudiantes', '24/11/1946', 'Estados Unidos', '1974-1978', 33, 'Maltratado', 'ted_bundy.png'),
+(2, 'Pedro Alonso', 'El monstruo de los Andes', '8/10/1948', 'Colombia', '1969-1980', 300, 'Malo, muy malo', 'pedro_alonso.png'),
+(3, 'Niels Hogel', 'El angel de la muerte', '30/12/1976', 'Alemania', '2000-2005', 85, 'Se cree Dios', 'niels_hogel.png');
 
 -- --------------------------------------------------------
 
