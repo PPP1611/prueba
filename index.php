@@ -1,7 +1,14 @@
 <?php
 include_once 'php/conexion.php';
 
-$result = $conexion->query("SELECT * FROM killer_information");
+$sql = "
+SELECT DISTINCT ki.*
+FROM killer_information ki
+JOIN killer_victims kv ON ki.id_killer = kv.id_killer
+JOIN victims v ON kv.id_victims = v.id_victims
+";
+
+$result = $conexion->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -27,20 +34,58 @@ $result = $conexion->query("SELECT * FROM killer_information");
         </section>
 
         <div class="arrow" id="backgroundContainer">
-            <button id="slideBtn"><i class="bi bi-caret-down-fill"></i></button>
+            <button id="slideBtn"><img src="./img/icons/arrow_down.png" alt=""></button>
         </div>
     </header>
 
     <section class="killerSection" id="serialKillersSection">
 
         <div class="userContainer" id="userContainer">
-            <div id="filter">
-                <button id="filterIcon"><i class="bi bi-filter-square"></i></button>
+            <div class="filter">
+                <button id="filterIcon"><img src="./img/icons/filter.png" alt=""></button>
             </div>
             <div id="user">
-                <button id="userIcon"><i class="bi bi-person-circle"></i></button>
+                <button id="userIcon"><img src="./img/icons/user.png" alt=""></button>
             </div>
         </div>
+
+        <!-- Ventana modal de filtros -->
+        <div id="filterModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="closeFilter">
+                    <img src="./img/icons/close.png" alt="Cerrar" />
+                </button>
+
+                <h2 class="title_window">Filtros</h2>
+
+                <label>Nombre</label>
+                <input type="text" />
+
+                <label>Alias</label>
+                <input type="text" />
+
+                <label>Lugar de actividad</label>
+                <div><input type="checkbox" /> Europa</div>
+                <div><input type="checkbox" /> América</div>
+                <div><input type="checkbox" /> África</div>
+
+                <label>Víctimas</label>
+                <input type="text" />
+
+                <label>Época de actividad</label>
+                <div class="date-range">
+                    <input type="text" placeholder="Mín" />
+                    <input type="text" placeholder="Máx" />
+                </div>
+
+                <div class="btn_filter">
+                    <button>Borrar</button>
+                    <button>Filtrar</button>
+                </div>
+            </div>
+        </div>
+
+
 
         <div id="killersContainer">
             <?php while ($row = $result->fetch_assoc()): ?>
@@ -60,6 +105,7 @@ $result = $conexion->query("SELECT * FROM killer_information");
 
 
     <script src='js/myScript.js'></script>
+    <script src='js/ventana_emergente.js'></script>
 </body>
 
 </html>
