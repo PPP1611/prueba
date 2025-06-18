@@ -44,7 +44,7 @@ $result = $conexion->query("SELECT * FROM killer_information");
 
         <div id="killersContainer">
             <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="killer">
+                <div class="killer" onclick="location.href='detalle.php?id=<?= $row['id_killer'] ?>'">
                     <button>
                         <img src="img/<?= $row['profile_picture'] ?>" alt="<?= $row['name_killer'] ?>" />
                     </button>
@@ -53,6 +53,7 @@ $result = $conexion->query("SELECT * FROM killer_information");
                 </div>
             <?php endwhile; ?>
         </div>
+
     </section>
 
     <?php $conexion->close(); ?>

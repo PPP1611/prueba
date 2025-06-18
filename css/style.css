@@ -207,6 +207,10 @@ body {
   color: white;
 }
 
+.killer{
+cursor:pointer;
+}
+
 .template {
   height: auto;
   width: 45%;
