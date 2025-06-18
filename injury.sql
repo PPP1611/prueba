@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 17-06-2025 a las 16:39:36
+-- Tiempo de generación: 18-06-2025 a las 17:42:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,25 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `killer_information` (
-  `id_asesino` int(11) NOT NULL,
+  `id_killer` int(11) NOT NULL,
   `name_killer` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
+  `name_descrip_killer` varchar(255) NOT NULL,
   `birth_date` varchar(255) NOT NULL,
   `birth_place` varchar(255) NOT NULL,
   `period_activity` varchar(255) NOT NULL,
   `victims_number` int(3) NOT NULL,
   `social_context` varchar(255) NOT NULL,
-  `profile_picture` varchar(255) NOT NULL
+  `profile_picture` varchar(255) NOT NULL,
+  `video_killer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `killer_information`
 --
 
-INSERT INTO `killer_information` (`id_asesino`, `name_killer`, `alias`, `birth_date`, `birth_place`, `period_activity`, `victims_number`, `social_context`, `profile_picture`) VALUES
-(1, 'Ted Bundy', 'El asesino de estudiantes', '24/11/1946', 'Estados Unidos', '1974-1978', 33, 'Maltratado', 'ted_bundy.png'),
-(2, 'Pedro Alonso', 'El monstruo de los Andes', '8/10/1948', 'Colombia', '1969-1980', 300, 'Malo, muy malo', 'pedro_alonso.png'),
-(3, 'Niels Hogel', 'El angel de la muerte', '30/12/1976', 'Alemania', '2000-2005', 85, 'Se cree Dios', 'niels_hogel.png');
+INSERT INTO `killer_information` (`id_killer`, `name_killer`, `alias`, `name_descrip_killer`, `birth_date`, `birth_place`, `period_activity`, `victims_number`, `social_context`, `profile_picture`, `video_killer`) VALUES
+(1, 'Thedore Robert Bundy', 'Ted Bundy', 'El asesino de estudiantes', '24/11/1946', 'Estados Unidos', '1974-1978', 33, 'Maltratado', 'ted_bundy.png', 'prueba.mp4'),
+(2, 'Pedro Alonso Completo', 'Pedro Alonso', 'El monstruo de los Andes', '8/10/1948', 'Colombia', '1969-1980', 300, 'Malo, muy malo', 'pedro_alonso.png', ''),
+(3, 'Niels Hogel Completo', 'Niels Hogel', 'El angel de la muerte', '30/12/1976', 'Alemania', '2000-2005', 85, 'Se cree Dios', 'niels_hogel.png', '');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ INSERT INTO `victims` (`id_victims`, `name`, `surname`, `age`, `crime_place`) VA
 -- Indices de la tabla `killer_information`
 --
 ALTER TABLE `killer_information`
-  ADD PRIMARY KEY (`id_asesino`);
+  ADD PRIMARY KEY (`id_killer`);
 
 --
 -- Indices de la tabla `killer_victims`
@@ -154,7 +156,7 @@ ALTER TABLE `victims`
 -- AUTO_INCREMENT de la tabla `killer_information`
 --
 ALTER TABLE `killer_information`
-  MODIFY `id_asesino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_killer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `killer_victims`
@@ -182,7 +184,7 @@ ALTER TABLE `victims`
 -- Filtros para la tabla `killer_victims`
 --
 ALTER TABLE `killer_victims`
-  ADD CONSTRAINT `fk_id_killer` FOREIGN KEY (`id_killer`) REFERENCES `killer_information` (`id_asesino`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_killer` FOREIGN KEY (`id_killer`) REFERENCES `killer_information` (`id_killer`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_victims` FOREIGN KEY (`id_victims`) REFERENCES `victims` (`id_victims`) ON UPDATE CASCADE;
 COMMIT;
 
