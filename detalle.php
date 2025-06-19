@@ -23,9 +23,10 @@ if (!$killer) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="Paloma" />
     <title><?= $killer['name_killer'] ?></title>
 
@@ -37,20 +38,21 @@ if (!$killer) {
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <header class="template">
-        <div class="navbar">
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
-                <li class="nav-item"><a class="nav-link" href="#perfilPsicologico">Perfil psicológico</a></li>
-                <li class="nav-item"><a class="nav-link" href="#modusOperandi">Modus Operandi</a></li>
-                <li class="nav-item"><a class="nav-link" href="#victimas">Víctimas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#resolucion">Resolución</a></li>
-            </ul>
-        </div>   
-    </header>
+
+    <div class="navbar">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
+            <li class="nav-item"><a class="nav-link" href="#perfilPsicologico">Perfil psicológico</a></li>
+            <li class="nav-item"><a class="nav-link" href="#modusOperandi">Modus Operandi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#victimas">Víctimas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resolucion">Resolución</a></li>
+        </ul>
+    </div>
+
 
     <main class="contentLayout">
-        <div class="upContainer">
+
+        <header class="headerKiller">
             <div class="profilePic">
                 <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
                 <div>
@@ -58,11 +60,13 @@ if (!$killer) {
                     <h3><?= $killer['name_descrip_killer'] ?></h3>
                 </div>
             </div>
-
-            <div class="homeContainer">
+            <!-- BOTÓN HOME -->
+            <div class="homeContainer" >
                 <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
             </div>
-        </div>
+
+        </header>
+
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
@@ -103,7 +107,8 @@ if (!$killer) {
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-    <script src='/js/myScript.js'></script> 
+    <script src='/js/myScript.js'></script>
 
 </body>
+
 </html>
