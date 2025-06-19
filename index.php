@@ -155,25 +155,67 @@ if ($result->num_rows == 0) {
 
 
 
-        <div id="killersContainer">
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="killer" onclick="location.href='detalle.php?id=<?= $row['id_killer'] ?>'">
-                    <button>
-                        <img src="img/<?= $row['profile_picture'] ?>" alt="<?= $row['name_killer'] ?>" />
+
+        <section id="killersContainer">
+            <div id="killersCarousel" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                    <?php
+                    $counter = 0;
+                    while ($row = $result->fetch_assoc()):
+                        // Iniciar nuevo slide cada 3 killers
+                        if ($counter % 3 == 0):
+                            $active = ($counter == 0) ? 'active' : '';
+                    ?>
+                            <div class="carousel-item <?= $active ?>">
+                                <div class="row justify-content-center mx-auto" style="max-width: 1200px;">
+                                <?php endif; ?>
+
+                                <div class="col-md-4 text-center p-3">
+                                    <div class="killer" onclick="location.href='detalle.php?id=<?= $row['id_killer'] ?>'">
+                                        <button id="<?= strtolower(str_replace(' ', '_', $row['name_killer'])) ?>" class="killer-btn">
+                                            <img src="img/<?= $row['profile_picture'] ?>" alt="<?= $row['name_killer'] ?>" class="img-fluid killer-img">
+                                        </button>
+                                        <h2><?= strtoupper($row['alias']) ?></h2>
+                                        <h3><?= $row['name_descrip_killer'] ?></h3>
+                                    </div>
+                                </div>
+
+                                <?php
+                                $counter++;
+                                if ($counter % 3 == 0 || $counter == $result->num_rows):
+                                ?>
+                                </div> 
+                            </div> 
+                    <?php
+                                endif;
+                            endwhile;
+                    ?>
+
+                    <!-- Controles del carrusel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel" data-bs-slide="prev" style="left: -100px; width: 80px;">
+                        <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
                     </button>
-                    <h2><?= $row['name_killer'] ?></h2>
-                    <h3><?= $row['alias'] ?></h3>
+                    <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel" data-bs-slide="next" style="right: -100px; width: 80px;">
+                        <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
+                    </button>
                 </div>
             <?php endwhile; ?>
         </div>
-
-    </section>
-
+        
+        <!-- Controles del carrusel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel" data-bs-slide="prev" style="left: -100px; width: 80px;">
+            <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel" data-bs-slide="next" style="right: -100px; width: 80px;">
+            <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
+        </button>
+    </div>
+</section>
     <?php $conexion->close(); ?>
 
 
-    <script src='js/myScript.js'></script>
-    <script src='js/ventana_emergente.js'></script>
+        <script src='js/myScript.js'></script>
+        <script src='js/ventana_emergente.js'></script>
 </body>
 
 </html>

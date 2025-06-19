@@ -68,22 +68,24 @@ if (!$killer) {
         <div class="expediente">
             <section class="informacion" id="informacion">
                 <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
+                <p>Alias: <?= nl2br($killer['alias']) ?></p>
+                <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
+                <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
+                <p>Periodo de actividad: <?= nl2br($killer['period_activity']) ?></p>
             </section>
 
             <section class="perfilPsicologico" id="perfilPsicologico">
-                <p>Alias: <?= nl2br($killer['alias']) ?></p>
+                <h3>Infancia</h3>
+                <p><?= nl2br($killer['psico_profile']) ?></p>
             </section>
 
             <section class="modusOperandi" id="modusOperandi">
-                <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
             </section>
 
             <section class="victimas" id="victimas">
-                <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
             </section>
 
             <section class="resolucion" id="resolucion">
-                <p>Periodo de actividad: <?= nl2br($killer['period_activity']) ?></p>
             </section>
         </div>
 
@@ -95,6 +97,8 @@ if (!$killer) {
                 </video>
             </div>
         </div>
+
+
     </main>
 
     <!-- SCRIPTS -->
