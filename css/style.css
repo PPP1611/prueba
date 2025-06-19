@@ -133,7 +133,36 @@ header.masthead.show-full .arrow {
     /* display: block; Para evitar espacio extra debajo de la imagen */
     /* border-radius: 6px; Bordes redondeados para las imágenes */
 }
+ .killer-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .killer-item.selected .killer-img {
+        filter: brightness(1.2);
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    .killer-item.adjacent .killer-img {
+        filter: brightness(0.6);
+    }
+    .killer-img {
+        transition: all 0.3s ease;
+    }
 
+    .killer-btn {
+        transition: all 0.3s ease;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    .killer-btn.selected {
+        filter: brightness(1.5) drop-shadow(0 0 8px white);
+    }
+    .killer-btn:not(.selected) {
+        filter: brightness(0.6);
+    }
+
+    
 
 /* -------------- */
 /* Estilo Nombres */
@@ -207,10 +236,6 @@ body {
   color: white;
 }
 
-.killer{
-cursor:pointer;
-}
-
 .template {
   height: auto;
   width: 45%;
@@ -259,6 +284,8 @@ cursor:pointer;
   padding: 10px 0; /* Espaciado vertical interno */
   /* box-shadow: 0 -2px 5px rgba(0,0,0,0.2); Sombra superior*/
   z-index: 1000; /* Asegura que esté por encima de la mayoría del contenido */
+    background-color: rgba(130, 132, 97, 1); 
+
 }
 
 /* Estilo para los elementos dentro de la navbar */
@@ -268,11 +295,12 @@ cursor:pointer;
   text-align: center; /* Centra el texto dentro de cada elemento */
   color: #ecf0f1; /* Color de texto  */
   text-decoration: none; /* Quita el subrayado de los enlaces */
-  padding: 40px 10px; /* Espaciado interno para cada elemento */
+  padding: 10px 10px; /* Espaciado interno para cada elemento */
+  
 }
 
 .navbar > *:hover {
-  background-color: rgba(130, 132, 97, 0.5); 
+  background-color: rgba(130, 132, 97, 15); 
   color: #ffffff;
   
 }
@@ -352,3 +380,8 @@ cursor:pointer;
   margin-bottom: 1em; /* Espacio debajo de cada párrafo */
 }
 
+.expediente .informacion {
+  width: auto;
+  height: 150%;
+  
+}

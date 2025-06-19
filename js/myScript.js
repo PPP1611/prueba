@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const mastheadElement = document.querySelector('header.masthead');
     const userContainer = document.getElementById('userContainer'); // Elemento que contiene userIcon y filterIcon
 
+    
     // Comprobar si los elementos esenciales existen
     if (!slideBtn) {
         console.error('Error: El botón con ID "slideBtn" no fue encontrado.');
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (userContainer) {
             userContainer.classList.toggle('visible'); // Alternar la visibilidad de userContainer
         }
+        
     });
 
 });
