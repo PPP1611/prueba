@@ -1,15 +1,74 @@
 <?php
 include_once 'php/conexion.php';
 
+$where = [];
+$groupBy = true; // por defecto, agrupamos por asesino
+
+// Filtro por nombre del asesino
+if (!empty($_GET['name_killer'])) {
+    $name = $conexion->real_escape_string($_GET['name_killer']);
+    $where[] = "ki.name_killer LIKE '%$name%'";
+}
+
+// Filtro por alias
+if (!empty($_GET['alias'])) {
+    $alias = $conexion->real_escape_string($_GET['alias']);
+    $where[] = "ki.alias LIKE '%$alias%'";
+}
+
+// Filtro por nombre de la víctima
+if (!empty($_GET['victim_name'])) {
+    $victim = $conexion->real_escape_string($_GET['victim_name']);
+    $where[] = "v.name LIKE '%$victim%'";
+    $groupBy = false; // si se filtra por víctima, no agrupamos
+}
+
+// Filtro por época (ahora usando period_start y period_end)
+if (!empty($_GET['start_year'])) {
+    $start = (int)$_GET['start_year'];
+    $where[] = "ki.period_start >= $start";
+}
+
+if (!empty($_GET['end_year'])) {
+    $end = (int)$_GET['end_year'];
+    $where[] = "ki.period_end <= $end";
+}
+
+
+// Armar condición
+$condition = "";
+if (!empty($where)) {
+    $condition = "WHERE " . implode(" AND ", $where);
+}
+
+// Consulta final
 $sql = "
-SELECT DISTINCT ki.*
+SELECT ki.*, v.name AS victim_name, v.crime_place
 FROM killer_information ki
 JOIN killer_victims kv ON ki.id_killer = kv.id_killer
 JOIN victims v ON kv.id_victims = v.id_victims
+$condition
 ";
 
+if ($groupBy) {
+    $sql .= " GROUP BY ki.id_killer";
+}
+
 $result = $conexion->query($sql);
+
+
+
+if ($result->num_rows == 0) {
+    $filterDisabled = true;
+    $message = "No se encontraron datos con esos filtros.";
+} else {
+    $filterDisabled = false;
+    $message = "";
+}
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -57,33 +116,42 @@ $result = $conexion->query($sql);
                 </button>
 
                 <h2 class="title_window">Filtros</h2>
+                <form method="GET" action="">
+                    <label>Nombre</label>
+                    <input type="text" name="name_killer" placeholder="Buscar asesino" />
 
-                <label>Nombre</label>
-                <input type="text" />
+                    <label>Alias</label>
+                    <input type="text" name="alias" placeholder="Buscar alias" />
 
-                <label>Alias</label>
-                <input type="text" />
+                    <label>Lugar de actividad</label>
+                    <div><input type="checkbox" disabled /> Europa</div>
+                    <div><input type="checkbox" disabled /> América</div>
+                    <div><input type="checkbox" disabled /> África</div>
 
-                <label>Lugar de actividad</label>
-                <div><input type="checkbox" /> Europa</div>
-                <div><input type="checkbox" /> América</div>
-                <div><input type="checkbox" /> África</div>
+                    <label>Víctimas</label>
+                    <input type="text" name="victim_name" placeholder="Buscar víctima" />
 
-                <label>Víctimas</label>
-                <input type="text" />
+                    <label>Época de actividad</label>
+                    <div class="date-range">
+                        <input type="text" name="start_year" placeholder="Mín (ej. 1970)" />
+                        <input type="text" name="end_year" placeholder="Máx (ej. 1980)" />
+                    </div>
 
-                <label>Época de actividad</label>
-                <div class="date-range">
-                    <input type="text" placeholder="Mín" />
-                    <input type="text" placeholder="Máx" />
-                </div>
+                    <?php if ($message): ?>
+                        <p style="color: red; font-weight: bold;"><?= $message ?></p>
+                    <?php endif; ?>
 
-                <div class="btn_filter">
-                    <button>Borrar</button>
-                    <button>Filtrar</button>
-                </div>
+
+                    <div class="btn_filter">
+                        <button href="index.php">Borrar</button>
+
+                        <button type="submit" <?= $filterDisabled ? 'disabled' : '' ?>>Filtrar</button>
+
+                    </div>
+                </form>
             </div>
         </div>
+
 
 
 
