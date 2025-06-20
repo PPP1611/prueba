@@ -52,7 +52,7 @@ if (!$killer) {
 
     <main class="contentLayout">
 
-        <header class="headerKiller">
+        <header class="headerKiller" id="headerKiller">
             <div class="profilePic">
                 <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
                 <div>
