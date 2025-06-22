@@ -7,6 +7,10 @@
   src: url(jmh_typewriter/JMH-Typewriter.ttf);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "jmh_typewriter";
 }
@@ -287,7 +291,11 @@ body {
 
 .headerKiller {
   background-color: rgba(130, 132, 97, 1);
-  margin-bottom: 20px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
 }
 
 /* -------------------- BARRA NAVEGACIÓN --------------------------- */
@@ -315,6 +323,7 @@ body {
   z-index: 1000;
   /* Asegura que esté por encima de la mayoría del contenido */
   background-color: rgba(130, 132, 97, 1);
+  text
 
 }
 
@@ -335,7 +344,7 @@ body {
 
 }
 
-.navbar:hover {
+.navbar:hover>* {
   background-color: rgba(130, 132, 97, 15);
   color: #ffffff;
 
@@ -344,6 +353,7 @@ body {
 /* -------------------- FOTO PERFIL --------------------------- */
 
 .profilePic {
+  z-index: 1000;
   position: fixed;
   /* Fija el elemento en la ventana del navegador */
   top: 30px;
@@ -433,16 +443,22 @@ body {
 .expediente {
   /* flex: 2; */
   /* El texto ocupa aproximadamente 2/3 del espacio disponible */
-  margin-left: 50px;
+  margin-left: 70px;
   margin-right: 80px;
+  margin-top: 10px;
+  margin-bottom: 100px;
   /* min-width: 20px; */
   /* Ancho mínimo para la sección de texto */
-  background-color: #22460d8e;
+  /* background-color: #22460d8e; */
   /*Color de fondo opcional para distinguir la sección*/
   /* padding: 1px;  */
   /* Espaciado interno opcional */
   /* border-radius: 8px;  */
   /* Bordes redondeados */
+}
+
+.expediente section[id] {
+  scroll-margin-top: 220px;
 }
 
 .expediente p {
@@ -455,9 +471,6 @@ body {
   
 }
 
-.expediente .informacion {
-  width: auto;
-  height: 55%;
-  
-
+.accordion {
+  z-index: 1;
 }

@@ -15,6 +15,12 @@ $result = $conexion->query("SELECT * FROM killer_information");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+        integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -42,58 +48,43 @@ $result = $conexion->query("SELECT * FROM killer_information");
             </div>
         </div>
 
-        <section id="killersContainer">
-            <div id="killersCarousel" class="carousel slide" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <?php
-                    $counter = 0;
-                    while ($row = $result->fetch_assoc()):
-                        // Iniciar nuevo slide cada 3 killers
-                        if ($counter % 3 == 0):
-                            $active = ($counter == 0) ? 'active' : '';
-                            ?>
-                            <div class="carousel-item <?= $active ?>">
-                                <div class="row justify-content-center mx-auto" style="max-width: 1200px;">
-                                <?php endif; ?>
-
-                                <div class="col-md-4 text-center p-3">
-                                    <div class="killer" onclick="location.href='detalle.php?id=<?= $row['id_killer'] ?>'">
-                                        <button id="<?= strtolower(str_replace(' ', '_', $row['name_killer'])) ?>"
-                                            class="killer-btn">
-                                            <img src="img/<?= $row['profile_picture'] ?>" alt="<?= $row['name_killer'] ?>"
-                                                class="img-fluid killer-img">
-                                        </button>
-                                        <h2><?= strtoupper($row['alias']) ?></h2>
-                                        <h3><?= $row['name_descrip_killer'] ?></h3>
-                                    </div>
-                                </div>
-
-                                <?php
-                                $counter++;
-                                // Cerrar slide cada 3 killers o al final
-                                if ($counter % 3 == 0 || $counter == $result->num_rows):
-                                    ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
+        <div class="killersContainer" id="killersContainer">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="killer" onclick="location.href='detalle.php?id=<?= $row['id_killer'] ?>'">
+                    <button>
+                        <img src="img/<?= $row['profile_picture'] ?>" alt="<?= $row['name_killer'] ?>" />
+                    </button>
+                    <h2><?= $row['alias'] ?></h2>
+                    <h3><?= $row['name_descrip_killer'] ?></h3>
                 </div>
+            <?php endwhile; ?>
+        </div>
 
-                <!-- Controles del carrusel -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel"
-                    data-bs-slide="prev" style="left: -100px; width: 80px;">
-                    <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel"
-                    data-bs-slide="next" style="right: -100px; width: 80px;">
-                    <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
-                </button>
-            </div>
-        </section>
-        <?php $conexion->close(); ?>
+    </section>
+
+    <?php $conexion->close(); ?>
+    <script> $(document).ready(function () { $('.killersContainer').slick({ setting- name: setting - value }); }); </script>
+
+    <script src='js/myScript.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.5.2/jquery-migrate.min.js"
+        integrity="sha512-BzvgYEoHXuphX+g7B/laemJGYFdrq4fTKEo+B3PurSxstMZtwu28FHkPKXu6dSBCzbUWqz/rMv755nUwhjQypw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-        <script src='js/myScript.js'></script>
+    <!-- para las flechas que no sé -->
+    <script>
+        $(document).ready(function () {
+            
+        });
+    </script>
+
 </body>
 
 </html>
