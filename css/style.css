@@ -335,7 +335,7 @@ body {
 
 }
 
-.navbar>*:hover {
+.navbar:hover {
   background-color: rgba(130, 132, 97, 15);
   color: #ffffff;
 
@@ -346,9 +346,9 @@ body {
 .profilePic {
   position: fixed;
   /* Fija el elemento en la ventana del navegador */
-  top: 40px;
+  top: 30px;
   /* Distancia desde la parte superior */
-  left: 60px;
+  left: 65px;
   /* Distancia desde la parte izquierda */
   display: flex;
   /* Habilita Flexbox para alinear los elementos hijos (imagen y texto) */
@@ -358,10 +358,11 @@ body {
   /* Espacio entre la imagen y el texto */
   /* z-index: 1010; */
   /* Asegura que esté visible sobre otros elementos */
-  padding: 8px 12px;
+  padding: 8px 8px;
   /* Espaciado interno */
-  border-radius: 25px;
+  border-radius: 15px;
   /* Bordes redondeados para un look de "píldora" */
+  background-color: rgba(130, 132, 97, 1);
 }
 
 .profilePic img {
@@ -386,11 +387,12 @@ body {
 
 .videoContainer {
 
-  /* right: 60px; */
+  /* right: 100px; */
   z-index: auto;
   border-radius: 15px;
-  /* flex: 1; El video ocupa aproximadamente 1/3 del espacio disponible */
-  min-width: 40px;
+   /* flex: 1;  */
+  /* El video ocupa aproximadamente 1/3 del espacio disponible */ 
+  min-width: 90px;
   /* Ancho mínimo para el contenedor del video */
   display: flex;
   /* justify-content: center; Centra el div.video horizontalmente */
@@ -411,44 +413,51 @@ body {
 
 }
 
-/* Contenedor principal para el layout de dos columnas en tedbundy.html */
+/* Contenedor principal para el layout de dos columnas */
 .contentLayout {
   display: flex;
-  gap: 20px;
+  gap: 100px;
   /* Espacio entre las columnas .expediente y .videoContainer */
   padding: 10px;
   /* Espaciado interno alrededor del contenido principal */
-  margin-top: 250px;
+  margin-top: 200px;
   /* Espacio para el .profilePic fijo en el header */
-  margin-bottom: 1000px;
+  margin-bottom: 150px;
   /* Espacio para la navbar fija en la parte inferior */
 }
 
+.contentLayout .expediente h2 {
+    font-weight: bold;
+}
+
 .expediente {
-  flex: 1.5;
+  /* flex: 2; */
   /* El texto ocupa aproximadamente 2/3 del espacio disponible */
-  min-width: 20px;
+  margin-left: 50px;
+  margin-right: 80px;
+  /* min-width: 20px; */
   /* Ancho mínimo para la sección de texto */
   background-color: #22460d8e;
-  
   /*Color de fondo opcional para distinguir la sección*/
-  /* padding: 15px; Espaciado interno opcional */
-  border-radius: 8px; 
-  /* Bordes redondeados opcionales */
+  /* padding: 1px;  */
+  /* Espaciado interno opcional */
+  /* border-radius: 8px;  */
+  /* Bordes redondeados */
 }
 
 .expediente p {
-  padding-left: 4%;
-  color: white;
-  font-size: 1rem;
-  line-height: 1.6;
+  
+  margin-top: 40px;
+  color: black;
+  font-size: 1.5rem;
+  /* line-height: 1.6; */
   text-align: justify;
-  margin-bottom: 1em;
-  /* Espacio debajo de cada párrafo */
+  
 }
 
 .expediente .informacion {
   width: auto;
-  height: 150%;
+  height: 55%;
+  
 
 }

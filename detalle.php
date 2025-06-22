@@ -49,38 +49,56 @@ if (!$killer) {
         </ul>
     </div>
 
+    <header class="headerKiller">
+        <div class="profilePic">
+            <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
+            <div>
+                <h2><?= strtoupper($killer['alias']) ?></h2>
+                <h3><?= $killer['name_descrip_killer'] ?></h3>
+            </div>
+        </div>
+        <!-- BOTÓN HOME -->
+        <div class="homeContainer">
+            <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
+        </div>
+
+    </header>
 
     <main class="contentLayout">
-
-        <header class="headerKiller">
-            <div class="profilePic">
-                <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
-                <div>
-                    <h2><?= strtoupper($killer['alias']) ?></h2>
-                    <h3><?= $killer['name_descrip_killer'] ?></h3>
-                </div>
-            </div>
-            <!-- BOTÓN HOME -->
-            <div class="homeContainer" >
-                <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
-            </div>
-
-        </header>
-
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
             <section class="informacion" id="informacion">
-                <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
-                <p>Alias: <?= nl2br($killer['alias']) ?></p>
-                <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
-                <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
-                <p>Periodo de actividad: <?= nl2br($killer['period_activity']) ?></p>
+                <h2>INFORMACIÓN GENERAL</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-9">
+                        <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
+                        <p>Alias: <?= nl2br($killer['alias']) ?></p>
+                        <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
+                        <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
+                        <p>Periodo de actividad:
+                            <?= nl2br($killer['period_activity_init']) ?>-<?= nl2br($killer['period_activity_end']) ?>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="videoContainer">
+                            <div class="video">
+                                <video controls class="w-100">
+                                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="perfilPsicologico" id="perfilPsicologico">
-                <h3>Infancia</h3>
-                <p><?= nl2br($killer['psico_profile']) ?></p>
+                <div>
+                    <h2>PERFIL PSICOLÓGICO</h2>
+                    <h3>Infancia</h3>
+                    <p><?= nl2br($killer['psico_profile']) ?></p>
+                </div>
+
             </section>
 
             <section class="modusOperandi" id="modusOperandi">
@@ -93,14 +111,7 @@ if (!$killer) {
             </section>
         </div>
 
-        <!-- VIDEO -->
-        <div class="videoContainer">
-            <div class="video">
-                <video width="240" height="420" controls>
-                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4">
-                </video>
-            </div>
-        </div>
+
 
 
     </main>
