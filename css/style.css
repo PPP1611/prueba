@@ -306,7 +306,7 @@ input[type="text"] {
   gap: 10px;
 }
 
-.btn_filter button {
+.btn_filter button, .btn_filter a {
   flex: 1;
   background-color: white;
   border: none;
@@ -314,10 +314,44 @@ input[type="text"] {
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: black;
+  text-align: center;
 }
 
-.btn_filter button:hover {
+.btn_filter button:hover, .btn_filter a:hover {
   background-color: #b8b8b8;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+  background-color: #f9faff;
+}
+
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+  cursor: pointer;
 }
 
 
@@ -344,27 +378,12 @@ body {
   width: 45%;
 }
 
-.boton-home {
-  color: white;
-  /* Icono en blanco */
-  font-size: 300%;
-  /* Tamaño */
-  cursor: pointer;
-  line-height: 1;
-  /* Para asegurar que el icono esté centrado si es un <i> */
+.homeContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 1rem;
 }
-
-.boton-home:hover {
-  background-color: rgba(74, 76, 37, 0.65);
-  border-radius: 50%;
-  /* Hace la imagen circular */
-  padding: 15px;
-  object-fit: cover;
-  /* Evita distorsionar la imagen */
-}
-
-
-
 
 /* -------------------- BARRA NAVEGACIÓN --------------------------- */
 

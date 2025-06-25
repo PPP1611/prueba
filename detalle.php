@@ -60,7 +60,7 @@ if (!$killer) {
             </div>
 
             <div class="homeContainer">
-                <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
+                <a href="index.php" class="boton-home"><img src="./img/icons/home.png" alt=""></a>
             </div>
         </div>
 
@@ -71,12 +71,7 @@ if (!$killer) {
                 <p>Alias: <?= nl2br($killer['alias']) ?></p>
                 <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
                 <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
-                <p>Periodo de actividad: <?= nl2br($killer['period_activity']) ?></p>
-            </section>
-
-            <section class="perfilPsicologico" id="perfilPsicologico">
-                <h3>Infancia</h3>
-                <p><?= nl2br($killer['psico_profile']) ?></p>
+                <p>Periodo de actividad: <?= nl2br($killer['period_start'])?> - <?= nl2br($killer['period_end']) ?></p>
             </section>
 
             <section class="modusOperandi" id="modusOperandi">

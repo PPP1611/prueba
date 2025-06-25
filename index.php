@@ -2,7 +2,9 @@
 include_once 'php/conexion.php';
 
 $where = [];
-$groupBy = true; // por defecto, agrupamos por asesino
+$groupBy = true; // agrupamos por defecto
+$joinVictims = "";
+$useVictimsJoin = false;
 
 // Filtro por nombre del asesino
 if (!empty($_GET['name_killer'])) {
@@ -19,34 +21,57 @@ if (!empty($_GET['alias'])) {
 // Filtro por nombre de la víctima
 if (!empty($_GET['victim_name'])) {
     $victim = $conexion->real_escape_string($_GET['victim_name']);
-    $where[] = "v.name LIKE '%$victim%'";
-    $groupBy = false; // si se filtra por víctima, no agrupamos
+    $where[] = "v.name_victims LIKE '%$victim%'";
+    $useVictimsJoin = true;
+    $groupBy = false;
 }
 
-// Filtro por época (ahora usando period_start y period_end)
+// Filtro por época (inicio)
 if (!empty($_GET['start_year'])) {
     $start = (int)$_GET['start_year'];
-    $where[] = "ki.period_start >= $start";
+    if ($start >= 1800 && $start <= (int)date("Y")) {
+        $where[] = "ki.period_start >= $start";
+    }
 }
 
+// Filtro por época (fin)
 if (!empty($_GET['end_year'])) {
     $end = (int)$_GET['end_year'];
-    $where[] = "ki.period_end <= $end";
+    if ($end >= 1800 && $end <= (int)date("Y")) {
+        $where[] = "ki.period_end <= $end";
+    }
 }
 
+// Filtro por lugar del crimen
+if (!empty($_GET['crime_place'])) {
+    $lugar = $conexion->real_escape_string($_GET['crime_place']);
+    if (!empty($_GET['name_victims'])) {
+        $where[] = "v.crime_place = '$lugar'";
+    } else {
+        $where[] = "EXISTS (
+            SELECT 1 FROM victims v2
+            WHERE v2.killer_id = ki.id_killer AND v2.crime_place = '$lugar'
+        )";
+    }
+    $useVictimsJoin = true;
+}
 
-// Armar condición
+// JOIN solo si se necesita acceder a victims directamente
+if ($useVictimsJoin) {
+    $joinVictims = "JOIN victims v ON v.killer_id = ki.id_killer";
+}
+
+// Armar la condición
 $condition = "";
 if (!empty($where)) {
     $condition = "WHERE " . implode(" AND ", $where);
 }
 
-// Consulta final
+// Consulta principal
 $sql = "
-SELECT ki.*, v.name AS victim_name, v.crime_place
+SELECT ki.*
 FROM killer_information ki
-JOIN killer_victims kv ON ki.id_killer = kv.id_killer
-JOIN victims v ON kv.id_victims = v.id_victims
+$joinVictims
 $condition
 ";
 
@@ -54,18 +79,49 @@ if ($groupBy) {
     $sql .= " GROUP BY ki.id_killer";
 }
 
+// Ejecutar consulta
 $result = $conexion->query($sql);
 
+// Cargar lugares únicos
+$lugares = [];
+$lugaresQuery = "SELECT DISTINCT crime_place FROM victims WHERE crime_place IS NOT NULL AND crime_place != ''";
+$lugaresResult = $conexion->query($lugaresQuery);
 
+if ($lugaresResult) {
+    while ($row = $lugaresResult->fetch_assoc()) {
+        $lugares[] = $row['crime_place'];
+    }
+}
+
+// Verificar resultados y generar mensajes por filtro
+$filterDisabled = false;
+$messages = [];
 
 if ($result->num_rows == 0) {
     $filterDisabled = true;
-    $message = "No se encontraron datos con esos filtros.";
-} else {
-    $filterDisabled = false;
-    $message = "";
-}
 
+    // Revisa qué filtros están activos y añade mensaje
+    if (!empty($_GET['name_killer'])) {
+        $messages[] = "No se encontraron asesinos con ese nombre.";
+    }
+    if (!empty($_GET['alias'])) {
+        $messages[] = "No se encontraron asesinos con ese alias.";
+    }
+    if (!empty($_GET['victim_name'])) {
+        $messages[] = "No se encontraron víctimas con ese nombre.";
+    }
+    if (!empty($_GET['crime_place'])) {
+        $messages[] = "No hay asesinatos registrados en ese lugar.";
+    }
+    if (!empty($_GET['start_year']) || !empty($_GET['end_year'])) {
+        $messages[] = "No se encontraron asesinos en esa época.";
+    }
+
+    // Si no se aplicó ningún filtro, mensaje genérico
+    if (empty($_GET)) {
+        $messages[] = "No hay datos disponibles.";
+    }
+}
 
 ?>
 
@@ -116,45 +172,62 @@ if ($result->num_rows == 0) {
                 </button>
 
                 <h2 class="title_window">Filtros</h2>
-                <form method="GET" action="">
+                <form id="filterForm" method="GET" action="index.php#killersCarousel">
+                    <!-- Nombre del asesino -->
                     <label>Nombre</label>
-                    <input type="text" name="name_killer" placeholder="Buscar asesino" />
+                    <input type="text" name="name_killer" placeholder="Buscar asesino"
+                        pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios"
+                        value="<?= htmlspecialchars($_GET['name_killer'] ?? '') ?>" />
 
+                    <!-- Alias -->
                     <label>Alias</label>
-                    <input type="text" name="alias" placeholder="Buscar alias" />
+                    <input type="text" name="alias" placeholder="Buscar alias"
+                        pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios"
+                        value="<?= htmlspecialchars($_GET['alias'] ?? '') ?>" />
 
-                    <label>Lugar de actividad</label>
-                    <div><input type="checkbox" disabled /> Europa</div>
-                    <div><input type="checkbox" disabled /> América</div>
-                    <div><input type="checkbox" disabled /> África</div>
+                    <!-- Lugar de actividad -->
+                    <label for="crime_place">Lugar de actividad</label>
+                    <select name="crime_place" id="crime_place">
+                        <option value="">-- Selecciona --</option>
+                        <?php foreach ($lugares as $lugar): ?>
+                            <option value="<?= htmlspecialchars($lugar) ?>"
+                                <?= isset($_GET['crime_place']) && $_GET['crime_place'] === $lugar ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($lugar) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
+                    <!-- Nombre de la víctima -->
                     <label>Víctimas</label>
-                    <input type="text" name="victim_name" placeholder="Buscar víctima" />
+                    <input type="text" name="victim_name" placeholder="Buscar víctima"
+                        value="<?= htmlspecialchars($_GET['victim_name'] ?? '') ?>" />
 
+                    <!-- Época -->
                     <label>Época de actividad</label>
                     <div class="date-range">
-                        <input type="text" name="start_year" placeholder="Mín (ej. 1970)" />
-                        <input type="text" name="end_year" placeholder="Máx (ej. 1980)" />
+                        <input type="number" name="start_year" placeholder="Mín (ej. 1970)" min="1800" max="2025"
+                            value="<?= htmlspecialchars($_GET['start_year'] ?? '') ?>" />
+                        <input type="number" name="end_year" placeholder="Máx (ej. 1980)" min="1800" max="2025"
+                            value="<?= htmlspecialchars($_GET['end_year'] ?? '') ?>" />
                     </div>
 
-                    <?php if ($message): ?>
-                        <p style="color: red; font-weight: bold;"><?= $message ?></p>
+                    <?php if (!empty($messages)): ?>
+                        <div style="color: red; margin-top: 10px;">
+                            <?php foreach ($messages as $msg): ?>
+                                <p><?= $msg ?></p>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
 
 
                     <div class="btn_filter">
-                        <button href="index.php">Borrar</button>
-
+                        <a href="index.php#killersCarousel">Borrar</a>
                         <button type="submit" <?= $filterDisabled ? 'disabled' : '' ?>>Filtrar</button>
-
                     </div>
+
                 </form>
             </div>
         </div>
-
-
-
-
 
         <section id="killersContainer">
             <div id="killersCarousel" class="carousel slide" data-bs-interval="false">
@@ -182,40 +255,44 @@ if ($result->num_rows == 0) {
 
                                 <?php
                                 $counter++;
+                                // Cerrar slide cada 3 killers o al final
                                 if ($counter % 3 == 0 || $counter == $result->num_rows):
                                 ?>
-                                </div> 
-                            </div> 
-                    <?php
-                                endif;
-                            endwhile;
-                    ?>
-
-                    <!-- Controles del carrusel -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel" data-bs-slide="prev" style="left: -100px; width: 80px;">
-                        <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel" data-bs-slide="next" style="right: -100px; width: 80px;">
-                        <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
-                    </button>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
                 </div>
-            <?php endwhile; ?>
-        </div>
-        
-        <!-- Controles del carrusel -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel" data-bs-slide="prev" style="left: -100px; width: 80px;">
-            <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel" data-bs-slide="next" style="right: -100px; width: 80px;">
-            <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
-        </button>
-    </div>
-</section>
-    <?php $conexion->close(); ?>
 
+                <!-- Controles del carrusel -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#killersCarousel" data-bs-slide="prev" style="left: -100px; width: 80px;">
+                    <span class="carousel-control-prev-icon" style="width: 90px; height: 90px;"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#killersCarousel" data-bs-slide="next" style="right: -100px; width: 80px;">
+                    <span class="carousel-control-next-icon" style="width: 90px; height: 90px;"></span>
+                </button>
+            </div>
+        </section>
+        <?php $conexion->close(); ?>
 
         <script src='js/myScript.js'></script>
         <script src='js/ventana_emergente.js'></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const filterForm = document.getElementById("filterForm");
+                const filterButton = filterForm.querySelector("button[type='submit']");
+                const modal = document.getElementById("filterModal");
+
+                <?php if ($filterDisabled): ?>
+                    // Deshabilitar botón para evitar clicks
+                    filterButton.disabled = true;
+
+                    // Asegurar que el modal está visible
+                    modal.classList.remove("hidden");
+                <?php endif; ?>
+            });
+        </script>
 </body>
 
 </html>
