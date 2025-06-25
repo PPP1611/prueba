@@ -23,9 +23,10 @@ if (!$killer) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="Paloma" />
     <title><?= $killer['name_killer'] ?></title>
 
@@ -37,19 +38,34 @@ if (!$killer) {
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <header class="template">
-        <div class="navbar">
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
-                <li class="nav-item"><a class="nav-link" href="#perfilPsicologico">Perfil psicológico</a></li>
-                <li class="nav-item"><a class="nav-link" href="#modusOperandi">Modus Operandi</a></li>
-                <li class="nav-item"><a class="nav-link" href="#victimas">Víctimas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#resolucion">Resolución</a></li>
-            </ul>
-        </div>   
+
+    <div class="navbar ">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
+            <li class="nav-item"><a class="nav-link" href="#perfilPsicologico">Perfil psicológico</a></li>
+            <li class="nav-item"><a class="nav-link" href="#modusOperandi">Modus Operandi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#victimas">Víctimas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resolucion">Resolución</a></li>
+        </ul>
+    </div>
+
+    <header class="headerKiller">
+        <div class="profilePic">
+            <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
+            <div>
+                <h2><?= strtoupper($killer['alias']) ?></h2>
+                <h3><?= $killer['name_descrip_killer'] ?></h3>
+            </div>
+        </div>
+        <!-- BOTÓN HOME -->
+        <div class="homeContainer">
+            <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
+        </div>
+
     </header>
 
     <main class="contentLayout">
+<<<<<<< HEAD
         <div class="upContainer">
             <div class="profilePic">
                 <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
@@ -63,42 +79,119 @@ if (!$killer) {
                 <a href="index.php" class="boton-home"><img src="./img/icons/home.png" alt=""></a>
             </div>
         </div>
+=======
+>>>>>>> a8f8def6cd4e5b312c9be626f322a59eb49212e1
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
             <section class="informacion" id="informacion">
+<<<<<<< HEAD
                 <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
                 <p>Alias: <?= nl2br($killer['alias']) ?></p>
                 <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
                 <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
                 <p>Periodo de actividad: <?= nl2br($killer['period_start'])?> - <?= nl2br($killer['period_end']) ?></p>
+=======
+                <h2>INFORMACIÓN GENERAL</h2>
+                <div class="row align-items-center gx-5">
+                    <div class="col-md-6">
+                        <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
+                        <p>Alias: <?= nl2br($killer['alias']) ?></p>
+                        <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
+                        <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
+                        <p>Periodo de actividad:
+                            <?= nl2br($killer['period_activity_init']) ?>-<?= nl2br($killer['period_activity_end']) ?>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="videoContainer">
+                            <div class="video">
+                                <video controls class="w-100">
+                                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="perfilPsicologico" id="perfilPsicologico">
+                <div>
+                    <h2>PERFIL PSICOLÓGICO</h2>
+                    <p><?= nl2br($killer['psico_profile']) ?></p>
+                </div>
+
+>>>>>>> a8f8def6cd4e5b312c9be626f322a59eb49212e1
             </section>
 
             <section class="modusOperandi" id="modusOperandi">
+                <h2>MODUS OPERANDI</h2>
+                <p><?= nl2br($killer['modus_operandi']) ?></p>
+
             </section>
 
             <section class="victimas" id="victimas">
+                <h2>VÍCTIMAS</h2>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Accordion Item #1
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the first item's accordion body.</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Accordion Item #2
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the second item's accordion body.</strong> Holi.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Accordion Item #3
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the third item's accordion body.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="resolucion" id="resolucion">
+                <h2>RESOLUCIÓN</h2>
+                <p><?= nl2br($killer['resolución']) ?></p>
             </section>
         </div>
 
-        <!-- VIDEO -->
-        <div class="videoContainer">
-            <div class="video">
-                <video width="240" height="420" controls>
-                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4">
-                </video>
-            </div>
-        </div>
+
 
 
     </main>
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-    <script src='/js/myScript.js'></script> 
+    <script src='/js/myScript.js'></script>
 
 </body>
+
 </html>

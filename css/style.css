@@ -7,6 +7,10 @@
   src: url(jmh_typewriter/JMH-Typewriter.ttf);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "jmh_typewriter";
 }
@@ -25,7 +29,7 @@ h1 {
 /* ------------------------------------------------------------------ */
 
 
-header {
+.masthead {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -71,12 +75,17 @@ header.masthead.show-full .arrow {
   pointer-events: none;
 }
 
-#slideBtn {
-  background: none;
-  border: none;
-  padding: 0;
+/* Estilo para la flecha */
+.arrow {
+  font-size: 200%;
+  color: white;
+  padding-top: 100px;
+  transition: opacity 0, 5s ease-out;
 }
 
+.arrow:hover {
+  font-size: 250%;
+}
 
 /* ------------------------------------------------------------------ */
 /* ----------------- CONTENEDOR ASESINOS SERIALES ------------------- */
@@ -141,36 +150,6 @@ header.masthead.show-full .arrow {
   /* display: block; Para evitar espacio extra debajo de la imagen */
   /* border-radius: 6px; Bordes redondeados para las imágenes */
 }
- .killer-item {
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    .killer-item.selected .killer-img {
-        filter: brightness(1.2);
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-    }
-    .killer-item.adjacent .killer-img {
-        filter: brightness(0.6);
-    }
-    .killer-img {
-        transition: all 0.3s ease;
-    }
-
-    .killer-btn {
-        transition: all 0.3s ease;
-        background: transparent;
-        border: none;
-        padding: 0;
-    }
-    .killer-btn.selected {
-        filter: brightness(1.5) drop-shadow(0 0 8px white);
-    }
-    .killer-btn:not(.selected) {
-        filter: brightness(0.6);
-    }
-
-    
 
 /* -------------- */
 /* Estilo Nombres */
@@ -221,19 +200,22 @@ header.masthead.show-full .arrow {
 }
 
 #userContainer button {
-  width: 50px;
-  height: 50px;
+  background-color: rgba(40, 40, 40, 0.6);
+  /* Fondo semitransparente oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Borde sutil */
+  color: white;
+  /* Iconos en blanco */
+  font-size: 3rem;
+  /* Tamaño de los iconos */
+  padding: 10px;
+  /* Espaciado interno */
   border-radius: 50%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.877);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  /* Muy importante */
+  /* botones circulares */
   cursor: pointer;
-  overflow: hidden;
-  /* Para que la imagen no se salga */
+  line-height: 1;
+  /* Para asegurar que el icono esté centrado si es un <i> */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* FILTRO */
@@ -354,7 +336,24 @@ select {
   cursor: pointer;
 }
 
-
+#userContainer button {
+  background-color: rgba(40, 40, 40, 0.6);
+  /* Fondo semitransparente oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Borde sutil */
+  color: white;
+  /* Iconos en blanco */
+  font-size: 3rem;
+  /* Tamaño de los iconos */
+  padding: 10px;
+  /* Espaciado interno */
+  border-radius: 50%;
+  /* Botones circulares */
+  cursor: pointer;
+  line-height: 1;
+  /* Para asegurar que el icono esté centrado si es un <i> */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
 
 /* ------------------------------------------------------------------ */
 /* -------------------- PLANTILLA ASESINO --------------------------- */
@@ -363,7 +362,7 @@ select {
 body {
   background-image: url("../img/fondo_claro.jpg");
   background-position: top left;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: contain;
   font-family: jmh_typewriter;
   color: white;
@@ -375,14 +374,44 @@ body {
 
 .template {
   height: auto;
-  width: 45%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.homeContainer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    margin: 1rem;
+.boton-home {
+  color: white;
+  /* Icono en blanco */
+  font-size: 300%;
+  /* Tamaño */
+  cursor: pointer;
+  line-height: 1;
+  /* Para asegurar que el icono esté centrado si es un <i> */
+  position: absolute;
+  top: 11%;
+  right: 5%;
+  z-index: 10;
+  position: fixed;
+
+}
+
+.boton-home:hover {
+
+  background-color: rgba(74, 76, 37, 0.65);
+  border-radius: 50%;
+  /* Hace la imagen circular */
+  padding: 15px;
+  object-fit: cover;
+  /* Evita distorsionar la imagen */
+}
+
+.headerKiller {
+  background-color: rgba(130, 132, 97, 1);
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
 }
 
 /* -------------------- BARRA NAVEGACIÓN --------------------------- */
@@ -407,8 +436,10 @@ body {
   padding: 10px 0;
   /* Espaciado vertical interno */
   /* box-shadow: 0 -2px 5px rgba(0,0,0,0.2); Sombra superior*/
-  z-index: 1000; /* Asegura que esté por encima de la mayoría del contenido */
-    background-color: rgba(130, 132, 97, 1); 
+  z-index: 1000;
+  /* Asegura que esté por encima de la mayoría del contenido */
+  background-color: rgba(130, 132, 97, 1);
+
 
 }
 
@@ -424,12 +455,13 @@ body {
   /* Color de texto  */
   text-decoration: none;
   /* Quita el subrayado de los enlaces */
-  padding: 40px 10px;
+  padding: 10px 10px;
   /* Espaciado interno para cada elemento */
+
 }
 
-.navbar>*:hover {
-  background-color: rgba(130, 132, 97, 0.5);
+.navbar:hover>* {
+  background-color: rgba(130, 132, 97, 15);
   color: #ffffff;
 
 }
@@ -437,11 +469,12 @@ body {
 /* -------------------- FOTO PERFIL --------------------------- */
 
 .profilePic {
+  z-index: 1000;
   position: fixed;
   /* Fija el elemento en la ventana del navegador */
-  top: 40px;
+  top: 30px;
   /* Distancia desde la parte superior */
-  left: 60px;
+  left: 65px;
   /* Distancia desde la parte izquierda */
   display: flex;
   /* Habilita Flexbox para alinear los elementos hijos (imagen y texto) */
@@ -449,25 +482,24 @@ body {
   /* Centra verticalmente la imagen y el texto */
   gap: 25px;
   /* Espacio entre la imagen y el texto */
-  z-index: 1010;
-  /* Asegura que esté visible sobre otros elementos (ej. navbar, userContainer) */
-  padding: 8px 12px;
+  /* z-index: 1010; */
+  /* Asegura que esté visible sobre otros elementos */
+  padding: 8px 8px;
   /* Espaciado interno */
-  border-radius: 25px;
+  border-radius: 15px;
   /* Bordes redondeados para un look de "píldora" */
+  background-color: rgba(130, 132, 97, 1);
 }
 
 .profilePic img {
-  width: 200px;
+  width: 150px;
   /* Ancho de la imagen de perfil */
-  height: 200px;
+  height: 150px;
   /* Alto de la imagen de perfil */
   border-radius: 50%;
   /* Hace la imagen circular */
   object-fit: cover;
   /* Evita distorsionar la imagen */
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  /* Borde sutil para la imagen */
 }
 
 .profilePic h2 {
@@ -480,17 +512,18 @@ body {
 
 .videoContainer {
 
-  /* right: 60px; */
+  /* right: 100px; */
   z-index: auto;
   border-radius: 15px;
-  /* flex: 1; El video ocupa aproximadamente 1/3 del espacio disponible */
-  min-width: 40px;
+   /* flex: 1;  */
+  /* El video ocupa aproximadamente 1/3 del espacio disponible */ 
+  min-width: 90px;
   /* Ancho mínimo para el contenedor del video */
   display: flex;
-  justify-content: center;
-  /* Centra el div.video horizontalmente */
+  /* justify-content: center; Centra el div.video horizontalmente */
   align-items: flex-start;
   /* Alinea el div.video en la parte superior*/
+  margin-right: 10px;
 }
 
 .videoContainer .video video {
@@ -504,40 +537,54 @@ body {
   /* Bordes redondeados para el video */
 }
 
-/* Contenedor principal para el layout de dos columnas en tedbundy.html */
+/* Contenedor principal para el layout de dos columnas */
 .contentLayout {
   display: flex;
-  gap: 50px;
+  gap: 100px;
   /* Espacio entre las columnas .expediente y .videoContainer */
   padding: 10px;
   /* Espaciado interno alrededor del contenido principal */
   margin-top: 200px;
   /* Espacio para el .profilePic fijo en el header */
-  margin-bottom: 130px;
+  margin-bottom: 150px;
   /* Espacio para la navbar fija en la parte inferior */
 }
 
+.contentLayout .expediente h2 {
+    font-weight: bold;
+}
+
 .expediente {
-  flex: 2;
+  /* flex: 2; */
   /* El texto ocupa aproximadamente 2/3 del espacio disponible */
-  min-width: 20px;
+  margin-left: 70px;
+  margin-right: 80px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+  /* min-width: 20px; */
   /* Ancho mínimo para la sección de texto */
-  /* background-color: #f9f9f9;  Color de fondo opcional para distinguir la sección */
-  /* padding: 15px; Espaciado interno opcional */
-  /* border-radius: 8px; Bordes redondeados opcionales */
+  /* background-color: #22460d8e; */
+  /*Color de fondo opcional para distinguir la sección*/
+  /* padding: 1px;  */
+  /* Espaciado interno opcional */
+  /* border-radius: 8px;  */
+  /* Bordes redondeados */
+}
+
+.expediente section[id] {
+  scroll-margin-top: 220px;
 }
 
 .expediente p {
-  padding-left: 4%;
+  
+  margin-top: 40px;
   color: black;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.5rem;
+  /* line-height: 1.6; */
   text-align: justify;
-  margin-bottom: 1em; /* Espacio debajo de cada párrafo */
+  
 }
 
-.expediente .informacion {
-  width: auto;
-  height: 150%;
-  
+.accordion {
+  z-index: 1;
 }
