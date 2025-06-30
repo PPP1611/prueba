@@ -75,12 +75,17 @@ header.masthead.show-full .arrow {
   pointer-events: none;
 }
 
-#slideBtn {
-  background: none;
-  border: none;
-  padding: 0;
+/* Estilo para la flecha */
+.arrow {
+  font-size: 200%;
+  color: white;
+  padding-top: 100px;
+  transition: opacity 0, 5s ease-out;
 }
 
+.arrow:hover {
+  font-size: 250%;
+}
 
 /* ------------------------------------------------------------------ */
 /* ----------------- CONTENEDOR ASESINOS SERIALES ------------------- */
@@ -194,8 +199,9 @@ header.masthead.show-full .arrow {
   transition: opacity 0.5s ease-out, visibility 0s 0s, transform 0.5s ease-out;
 }
 
+/* Estilos para los botones dentro de userContainer */
 #userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
+  background-color: #28282899;
   /* Fondo semitransparente oscuro */
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* Borde sutil */
@@ -206,74 +212,20 @@ header.masthead.show-full .arrow {
   padding: 10px;
   /* Espaciado interno */
   border-radius: 50%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.877);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  /* Muy importante */
+  /* botones circulares */
   cursor: pointer;
-  overflow: hidden;
-  /* Para que la imagen no se salga */
-}
-
-/* FILTRO */
-/* Modal general */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #e0e0e0;
-  padding: 20px;
-  border-radius: 15px;
-  width: 25rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.modal .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: white;
-  border-radius: 10px;
-  font-size: 1rem;
-  box-sizing: border-box;
+  line-height: 1;
+  /* Para asegurar que el icono esté centrado si es un <i> */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 #userContainer button:hover {
-  background-color: rgba(60, 60, 60, 0.8);
+  background-color: #3c3c3ccc;
   border-color: rgba(255, 255, 255, 0.4);
 }
 
 #userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
+  background-color: #28282899;
   /* Fondo semitransparente oscuro */
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* Borde sutil */
@@ -282,49 +234,14 @@ input[type="text"] {
   font-size: 3rem;
   /* Tamaño de los iconos */
   padding: 10px;
+  /* Espaciado interno */
+  border-radius: 50%;
+  /* Botones circulares */
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  color: black;
-  text-align: center;
+  line-height: 1;
+  /* Para asegurar que el icono esté centrado si es un <i> */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-
-.btn_filter button:hover,
-.btn_filter a:hover {
-  background-color: #b8b8b8;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1.5px solid #ccc;
-  border-radius: 10px;
-  font-size: 1rem;
-  box-sizing: border-box;
-  background-color: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  appearance: none;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
-  background-color: #f9faff;
-}
-
-select {
-  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px 16px;
-  cursor: pointer;
-}
-
 
 /* ------------------------------------------------------------------ */
 /* -------------------- PLANTILLA ASESINO --------------------------- */
@@ -337,10 +254,6 @@ body {
   background-size: contain;
   font-family: jmh_typewriter;
   color: white;
-}
-
-.killer {
-  cursor: pointer;
 }
 
 .template {
@@ -409,12 +322,9 @@ body {
   /* box-shadow: 0 -2px 5px rgba(0,0,0,0.2); Sombra superior*/
   z-index: 1000;
   /* Asegura que esté por encima de la mayoría del contenido */
-  background-color: rgba(130, 132, 97, 1);
-  text
+  background-color: #828461;
 
 }
-
-
 
 /* Estilo para los elementos dentro de la navbar */
 .nav-item>* {
@@ -473,6 +383,7 @@ body {
   /* Hace la imagen circular */
   object-fit: cover;
   /* Evita distorsionar la imagen */
+
 }
 
 .profilePic h2 {
@@ -488,8 +399,8 @@ body {
   /* right: 100px; */
   z-index: auto;
   border-radius: 15px;
-  /* flex: 1;  */
-  /* El video ocupa aproximadamente 1/3 del espacio disponible */
+   /* flex: 1;  */
+  /* El video ocupa aproximadamente 1/3 del espacio disponible */ 
   min-width: 90px;
   /* Ancho mínimo para el contenedor del video */
   display: flex;
@@ -508,6 +419,7 @@ body {
   /* Elimina espacio extra debajo del video */
   border-radius: 8px;
   /* Bordes redondeados para el video */
+
 }
 
 /* Contenedor principal para el layout de dos columnas */
@@ -524,7 +436,7 @@ body {
 }
 
 .contentLayout .expediente h2 {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .expediente {
@@ -549,46 +461,15 @@ body {
 }
 
 .expediente p {
-
+  
   margin-top: 40px;
   color: black;
   font-size: 1.5rem;
   /* line-height: 1.6; */
   text-align: justify;
-
+  
 }
 
 .accordion {
   z-index: 1;
-}
-
-/* -------------------- CONTENEDOR ACORDEON VICTIMAS --------------------------- */
-
-.accordion-button:not(.collapsed) {
-  background-color: #6a6b4f;
-  color: white;
-  box-shadow: none;
-}
-
-.accordion-item {
-  background-color: transparent;
-  border: none;
-}
-
-.accordion-button {
-  background-color: #6a6b4f;
-  color: white;
-}
-
-.accordion-body {
-  background-color: #828461;
-  color: white;
-}
-
-.accordion-button::after {
-  filter: brightness(0) invert(1);
-}
-
-.accordion-button:focus {
-  box-shadow: none;
 }
