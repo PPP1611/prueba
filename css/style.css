@@ -280,7 +280,8 @@ input[type="text"] {
   gap: 10px;
 }
 
-.btn_filter button, .btn_filter a {
+.btn_filter button,
+.btn_filter a {
   flex: 1;
   background-color: white;
   border: none;
@@ -293,7 +294,8 @@ input[type="text"] {
   text-align: center;
 }
 
-.btn_filter button:hover, .btn_filter a:hover {
+.btn_filter button:hover,
+.btn_filter a:hover {
   background-color: #b8b8b8;
 }
 
@@ -489,8 +491,8 @@ body {
   /* right: 100px; */
   z-index: auto;
   border-radius: 15px;
-   /* flex: 1;  */
-  /* El video ocupa aproximadamente 1/3 del espacio disponible */ 
+  /* flex: 1;  */
+  /* El video ocupa aproximadamente 1/3 del espacio disponible */
   min-width: 90px;
   /* Ancho mínimo para el contenedor del video */
   display: flex;
@@ -525,7 +527,7 @@ body {
 }
 
 .contentLayout .expediente h2 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .expediente {
@@ -550,15 +552,46 @@ body {
 }
 
 .expediente p {
-  
+
   margin-top: 40px;
   color: black;
   font-size: 1.5rem;
   /* line-height: 1.6; */
   text-align: justify;
-  
+
 }
 
 .accordion {
   z-index: 1;
+}
+
+/* -------------------- CONTENEDOR ACORDEON VICTIMAS --------------------------- */
+
+.accordion-button:not(.collapsed) {
+  background-color: #6a6b4f;
+  color: white;
+  box-shadow: none;
+}
+
+.accordion-item {
+  background-color: transparent;
+  border: none;
+}
+
+.accordion-button {
+  background-color: #6a6b4f;
+  color: white;
+}
+
+.accordion-body {
+  background-color: #828461;
+  color: white;
+}
+
+.accordion-button::after {
+  filter: brightness(0) invert(1);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
 }
