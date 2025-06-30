@@ -235,6 +235,38 @@ if ($result->num_rows == 0) {
             </div>
         </div>
 
+        <!-- Ventana modal de suscripción -->
+        <div id="subscribeModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="closeSubscribe">
+                    <img src="./img/icons/close.png" alt="Cerrar" />
+                </button>
+
+                <h2 class="title_window">Suscríbete</h2>
+                <form id="subscribeForm" method="POST" action="php/insertUser.php">
+                    <!-- Nombre -->
+                    <label>Nombre</label>
+                    <input type="text" name="name" placeholder="Tu nombre"
+                        pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" required />
+
+                    <!-- Email -->
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Tu email" required />
+
+                    <!-- Checkbox -->
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required />
+                        Acepto los <a href="#">términos y condiciones</a>
+                    </label>
+
+                    <div class="btn_filter">
+                        <button type="submit">Suscribirse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
         <section id="killersContainer">
             <div id="killersCarousel" class="carousel slide" data-bs-interval="false">
                 <div class="carousel-inner">

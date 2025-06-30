@@ -250,7 +250,8 @@ header.masthead.show-full .arrow {
   display: none;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
   width: 100%;
   padding: 8px;
   border: white;
@@ -329,6 +330,23 @@ select {
   background-size: 16px 16px;
   cursor: pointer;
 }
+
+
+
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
 
 
 /* ------------------------------------------------------------------ */
@@ -531,20 +549,10 @@ body {
 }
 
 .expediente {
-  /* flex: 2; */
-  /* El texto ocupa aproximadamente 2/3 del espacio disponible */
   margin-left: 70px;
   margin-right: 80px;
   margin-top: 10px;
   margin-bottom: 100px;
-  /* min-width: 20px; */
-  /* Ancho mínimo para la sección de texto */
-  /* background-color: #22460d8e; */
-  /*Color de fondo opcional para distinguir la sección*/
-  /* padding: 1px;  */
-  /* Espaciado interno opcional */
-  /* border-radius: 8px;  */
-  /* Bordes redondeados */
 }
 
 .expediente section[id] {
@@ -556,9 +564,7 @@ body {
   margin-top: 40px;
   color: black;
   font-size: 1.5rem;
-  /* line-height: 1.6; */
   text-align: justify;
-
 }
 
 .accordion {
