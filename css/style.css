@@ -201,7 +201,7 @@ header.masthead.show-full .arrow {
 
 /* Estilos para los botones dentro de userContainer */
 #userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
+  background-color: #28282899;
   /* Fondo semitransparente oscuro */
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* Borde sutil */
@@ -220,12 +220,12 @@ header.masthead.show-full .arrow {
 }
 
 #userContainer button:hover {
-  background-color: rgba(60, 60, 60, 0.8);
+  background-color: #3c3c3ccc;
   border-color: rgba(255, 255, 255, 0.4);
 }
 
 #userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
+  background-color: #28282899;
   /* Fondo semitransparente oscuro */
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* Borde sutil */
@@ -281,7 +281,7 @@ body {
 
 .boton-home:hover {
 
-  background-color: rgba(74, 76, 37, 0.65);
+  background-color: #4a4c25a6;
   border-radius: 50%;
   /* Hace la imagen circular */
   padding: 15px;
@@ -290,7 +290,7 @@ body {
 }
 
 .headerKiller {
-  background-color: rgba(130, 132, 97, 1);
+  background-color: #828461;
   height: auto;
   width: 100%;
   display: flex;
@@ -322,7 +322,7 @@ body {
   /* box-shadow: 0 -2px 5px rgba(0,0,0,0.2); Sombra superior*/
   z-index: 1000;
   /* Asegura que esté por encima de la mayoría del contenido */
-  background-color: rgba(130, 132, 97, 1);
+  background-color: #828461;
   text
 
 }
@@ -372,7 +372,7 @@ body {
   /* Espaciado interno */
   border-radius: 15px;
   /* Bordes redondeados para un look de "píldora" */
-  background-color: rgba(130, 132, 97, 1);
+  background-color: #828461;
 }
 
 .profilePic img {
