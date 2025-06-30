@@ -75,17 +75,12 @@ header.masthead.show-full .arrow {
   pointer-events: none;
 }
 
-/* Estilo para la flecha */
-.arrow {
-  font-size: 200%;
-  color: white;
-  padding-top: 100px;
-  transition: opacity 0, 5s ease-out;
+#slideBtn {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
-.arrow:hover {
-  font-size: 250%;
-}
 
 /* ------------------------------------------------------------------ */
 /* ----------------- CONTENEDOR ASESINOS SERIALES ------------------- */
@@ -200,22 +195,19 @@ header.masthead.show-full .arrow {
 }
 
 #userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
-  /* Fondo semitransparente oscuro */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  /* Borde sutil */
-  color: white;
-  /* Iconos en blanco */
-  font-size: 3rem;
-  /* Tamaño de los iconos */
-  padding: 10px;
-  /* Espaciado interno */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  /* botones circulares */
+  border: none;
+  background-color: rgba(255, 255, 255, 0.877);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  /* Muy importante */
   cursor: pointer;
-  line-height: 1;
-  /* Para asegurar que el icono esté centrado si es un <i> */
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  /* Para que la imagen no se salga */
 }
 
 /* FILTRO */
@@ -336,24 +328,6 @@ select {
   cursor: pointer;
 }
 
-#userContainer button {
-  background-color: rgba(40, 40, 40, 0.6);
-  /* Fondo semitransparente oscuro */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  /* Borde sutil */
-  color: white;
-  /* Iconos en blanco */
-  font-size: 3rem;
-  /* Tamaño de los iconos */
-  padding: 10px;
-  /* Espaciado interno */
-  border-radius: 50%;
-  /* Botones circulares */
-  cursor: pointer;
-  line-height: 1;
-  /* Para asegurar que el icono esté centrado si es un <i> */
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
 
 /* ------------------------------------------------------------------ */
 /* -------------------- PLANTILLA ASESINO --------------------------- */
@@ -439,9 +413,9 @@ body {
   z-index: 1000;
   /* Asegura que esté por encima de la mayoría del contenido */
   background-color: rgba(130, 132, 97, 1);
-
-
 }
+
+
 
 /* Estilo para los elementos dentro de la navbar */
 .nav-item>* {

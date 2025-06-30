@@ -58,14 +58,14 @@ if (!$killer) {
             </div>
         </div>
         <!-- BOTÓN HOME -->
-        <div class="homeContainer">
-            <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
+            <div class="homeContainer">
+                <a href="index.php" class="boton-home"><img src="./img/icons/home.png" alt=""></a>
+            </div>
         </div>
 
     </header>
 
     <main class="contentLayout">
-<<<<<<< HEAD
         <div class="upContainer">
             <div class="profilePic">
                 <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
@@ -75,23 +75,11 @@ if (!$killer) {
                 </div>
             </div>
 
-            <div class="homeContainer">
-                <a href="index.php" class="boton-home"><img src="./img/icons/home.png" alt=""></a>
-            </div>
         </div>
-=======
->>>>>>> a8f8def6cd4e5b312c9be626f322a59eb49212e1
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
             <section class="informacion" id="informacion">
-<<<<<<< HEAD
-                <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
-                <p>Alias: <?= nl2br($killer['alias']) ?></p>
-                <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
-                <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
-                <p>Periodo de actividad: <?= nl2br($killer['period_start'])?> - <?= nl2br($killer['period_end']) ?></p>
-=======
                 <h2>INFORMACIÓN GENERAL</h2>
                 <div class="row align-items-center gx-5">
                     <div class="col-md-6">
@@ -121,7 +109,6 @@ if (!$killer) {
                     <p><?= nl2br($killer['psico_profile']) ?></p>
                 </div>
 
->>>>>>> a8f8def6cd4e5b312c9be626f322a59eb49212e1
             </section>
 
             <section class="modusOperandi" id="modusOperandi">
