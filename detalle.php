@@ -14,6 +14,9 @@ if (!$id) {
 $query = $conexion->query("SELECT * FROM killer_information WHERE id_killer = $id");
 $killer = $query->fetch_assoc();
 
+$query_victims = $conexion->query("SELECT * FROM victims WHERE killer_id = $id");
+
+
 // Si no encuentra datos, redirige
 if (!$killer) {
     header("Location: index.php");
@@ -59,12 +62,23 @@ if (!$killer) {
         </div>
         <!-- BOTÓN HOME -->
         <div class="homeContainer">
-            <a href="index.php" class="boton-home"><i class="bi bi-house-door-fill"></i></a>
+            <a href="index.php" class="boton-home"><img src="./img/icons/home.png" alt=""></a>
+        </div>
         </div>
 
     </header>
 
     <main class="contentLayout">
+        <div class="upContainer">
+            <div class="profilePic">
+                <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
+                <div>
+                    <h2><?= strtoupper($killer['alias']) ?></h2>
+                    <h3><?= $killer['name_descrip_killer'] ?></h3>
+                </div>
+            </div>
+
+        </div>
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
@@ -109,49 +123,32 @@ if (!$killer) {
             <section class="victimas" id="victimas">
                 <h2>VÍCTIMAS</h2>
                 <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Accordion Item #1
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong>
+                    <?php
+                    $index = 0;
+                    while ($victima = $query_victims->fetch_assoc()) {
+                        $isFirst = $index === 0 ? 'show' : '';
+                        $isCollapsed = $index === 0 ? '' : 'collapsed';
+                    ?>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading<?= $index ?>">
+                                <button class="accordion-button <?= $isCollapsed ?>" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse<?= $index ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="collapse<?= $index ?>">
+                                    <?= htmlspecialchars($victima['name_victims']) ?>
+                                </button>
+                            </h2>
+                            <div id="collapse<?= $index ?>" class="accordion-collapse collapse <?= $isFirst ?>" aria-labelledby="heading<?= $index ?>" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong><?= nl2br(htmlspecialchars($victima['info'])) ?></strong>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Accordion Item #2
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> Holi.
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Accordion Item #3
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        $index++;
+                    }
+                    ?>
                 </div>
             </section>
+
 
             <section class="resolucion" id="resolucion">
                 <h2>RESOLUCIÓN</h2>
