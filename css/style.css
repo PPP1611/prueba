@@ -53,7 +53,7 @@ h1 {
   transition: background-position 1s cubic-bezier(0, 0, 1, 1);
 }
 
-.masthead.show-full {
+.masthead.visible {
   background-position: bottom;
 }
 
@@ -64,13 +64,13 @@ header.masthead section#start {
   transition: transform 1s ease-out;
 }
 
-header.masthead.show-full section#start {
+header.masthead.visible section#start {
   transform: translateY(-100%);
   pointer-events: none;
 }
 
 /* Ocultar la flecha cuando el botón ha sido presionado */
-header.masthead.show-full .arrow {
+header.masthead.visible .arrow {
   opacity: 0;
   pointer-events: none;
 }
@@ -88,7 +88,7 @@ header.masthead.show-full .arrow {
 
 
 /* Estilo para el contenedor de los botones de asesinos */
-#killersContainer {
+.killersContainer {
   position: fixed;
   /* Posicionamiento relativo al viewport */
   left: 50%;
@@ -105,14 +105,26 @@ header.masthead.show-full .arrow {
   /*Para alinear los botones */
   gap: 100px;
   /* Espacio entre los botones */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
+  width: 50px;
+  height: auto;
+  padding: 20px;
+  
   /* z-index: 1000; Asegura que esté por encima de otro contenido */
-  /* background-color: rgba(30, 30, 30, 0.85); Fondo semitransparente */
+    /* background-color: rgba(30, 30, 30, 0.85); Fondo semitransparente */
 
 }
 
-#killersContainer.visible {
-  top: 55%;
+.killer {
+  width: 70%;
+  height: 100%;
+}
+
+.killersContainer.visible {
+  top: 60%;
   /* Posición final: centro vertical del viewport */
   transform: translate(-50%, -50%);
   /* Ajuste para centrar el elemento completamente */
@@ -122,11 +134,10 @@ header.masthead.show-full .arrow {
 }
 
 /* Estilos para los botones dentro del contenedor */
-#killersContainer button {
+.killersContainer button {
   background: none;
-  border: 2px solid transparent;
+  /* border: 2px solid transparent; */
   /* Borde opcional para hover/focus */
-  padding: 0;
   cursor: pointer;
   transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
@@ -146,6 +157,21 @@ header.masthead.show-full .arrow {
   /* border-radius: 6px; Bordes redondeados para las imágenes */
 }
 
+.slick-arrow {
+  left: 0;
+  right: 0;
+  
+  z-index: 1000;
+}
+
+.slick-prev {
+  left: 50px;
+}
+
+.slick-next {
+  right: 50px;
+}
+
 /* -------------- */
 /* Estilo Nombres */
 /* -------------- */
@@ -161,6 +187,7 @@ header.masthead.show-full .arrow {
   text-align: center;
   color: white;
 }
+
 
 /* ------------------------------------------------------------------ */
 /* -------------------- CONTENEDOR USER/FILTER -------------------- */
@@ -250,7 +277,8 @@ header.masthead.show-full .arrow {
   display: none;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
   width: 100%;
   padding: 8px;
   border: white;
@@ -329,6 +357,23 @@ select {
   background-size: 16px 16px;
   cursor: pointer;
 }
+
+
+
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
 
 
 /* ------------------------------------------------------------------ */
@@ -531,20 +576,10 @@ body {
 }
 
 .expediente {
-  /* flex: 2; */
-  /* El texto ocupa aproximadamente 2/3 del espacio disponible */
   margin-left: 70px;
   margin-right: 80px;
   margin-top: 10px;
   margin-bottom: 100px;
-  /* min-width: 20px; */
-  /* Ancho mínimo para la sección de texto */
-  /* background-color: #22460d8e; */
-  /*Color de fondo opcional para distinguir la sección*/
-  /* padding: 1px;  */
-  /* Espaciado interno opcional */
-  /* border-radius: 8px;  */
-  /* Bordes redondeados */
 }
 
 .expediente section[id] {
@@ -556,9 +591,7 @@ body {
   margin-top: 40px;
   color: black;
   font-size: 1.5rem;
-  /* line-height: 1.6; */
   text-align: justify;
-
 }
 
 .accordion {
