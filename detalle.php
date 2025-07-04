@@ -44,11 +44,11 @@ if (!$killer) {
 
     <div class="navbar ">
         <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link" href="#informacion">Información</a></li>
-            <li class="nav-item"><a class="nav-link" href="#perfilPsicologico">Perfil psicológico</a></li>
-            <li class="nav-item"><a class="nav-link" href="#modusOperandi">Modus Operandi</a></li>
-            <li class="nav-item"><a class="nav-link" href="#victimas">Víctimas</a></li>
-            <li class="nav-item"><a class="nav-link" href="#resolucion">Resolución</a></li>
+            <li class="nav-item"><a class="nav-link" href="#informacion" alt="Información">Información</a></li>
+            <li class="nav-item"><a class="nav-link" href="#perfilPsicologico" alt="Perfil Psicológico">Perfil psicológico</a></li>
+            <li class="nav-item"><a class="nav-link" href="#modusOperandi" alt="Modus Operandi">Modus Operandi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#victimas" alt="Víctimas">Víctimas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resolucion" alt="Resolución">Resolución</a></li>
         </ul>
     </div>
 
@@ -86,13 +86,11 @@ if (!$killer) {
                 <h2>INFORMACIÓN GENERAL</h2>
                 <div class="row align-items-center gx-5">
                     <div class="col-md-6">
-                        <p>Nombre completo: <?= nl2br($killer['name_killer']) ?></p>
-                        <p>Alias: <?= nl2br($killer['alias']) ?></p>
-                        <p>Fecha de nacimiento: <?= nl2br($killer['birth_date']) ?></p>
-                        <p>Lugar de nacimiento: <?= nl2br($killer['birth_place']) ?></p>
-                        <p>Periodo de actividad:
-                            <?= nl2br($killer['period_activity_init']) ?>-<?= nl2br($killer['period_activity_end']) ?>
-                        </p>
+                        <p><b>Nombre completo:</b> <?= nl2br($killer['name_killer']) ?></p>
+                        <p><b>Alias:</b> <?= nl2br($killer['alias']) ?></p>
+                        <p><b>Fecha de nacimiento:</b> <?= nl2br($killer['birth_date']) ?></p>
+                        <p><b>Lugar de nacimiento:</b> <?= nl2br($killer['birth_place']) ?></p>
+                        <p><b>Periodo de actividad:</b> <?= nl2br($killer['period_activity_init']) ?>-<?= nl2br($killer['period_activity_end']) ?></p>
                     </div>
                     <div class="col-md-6">
                         <div class="videoContainer">
