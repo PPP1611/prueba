@@ -18,12 +18,13 @@ if (!empty($_GET['alias'])) {
     $where[] = "ki.alias LIKE '%$alias%'";
 }
 
-// Filtro por nombre de la víctima
-if (!empty($_GET['victim_name'])) {
-    $victim = $conexion->real_escape_string($_GET['victim_name']);
-    $where[] = "v.name_victims LIKE '%$victim%'";
-    $useVictimsJoin = true;
-    $groupBy = false;
+// Filtro por cantidad de víctimas
+if (!empty($_GET['victims_number'])) {
+    $victims_number = $conexion->real_escape_string($_GET['victims_number']);
+    // $where[] = "v.name_victims LIKE '%$victim%'";
+    // $useVictimsJoin = true;
+    // $groupBy = false;
+    $where[] = "ki.victims_number LIKE '%$victims_number%'";
 }
 
 // Filtro por época (inicio)
@@ -107,7 +108,7 @@ if ($result->num_rows == 0) {
     if (!empty($_GET['alias'])) {
         $messages[] = "No se encontraron asesinos con ese alias.";
     }
-    if (!empty($_GET['victim_name'])) {
+    if (!empty($_GET['victims_number'])) {
         $messages[] = "No se encontraron víctimas con ese nombre.";
     }
     if (!empty($_GET['crime_place'])) {
@@ -198,10 +199,10 @@ if ($result->num_rows == 0) {
                         <?php endforeach; ?>
                     </select>
 
-                    <!-- Nombre de la víctima -->
+                    <!-- Número de víctimas -->
                     <label>Víctimas</label>
-                    <input type="text" name="victim_name" placeholder="Buscar víctima"
-                        value="<?= htmlspecialchars($_GET['victim_name'] ?? '') ?>" />
+                    <input type="number" name="victims_number" placeholder="Buscar por número de víctimas"
+                        value="<?= htmlspecialchars($_GET['victims_number'] ?? '') ?>" />
 
                     <!-- Época -->
                     <label>Época de actividad</label>
@@ -244,36 +245,9 @@ if ($result->num_rows == 0) {
                     <input type="text" name="name" placeholder="Tu nombre"
                         pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" required />
 
-                    <!-- Email -->
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Tu email" required />
-
-                    <!-- Checkbox -->
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required />
-                        Acepto los <a href="#">términos y condiciones</a>
-                    </label>
-
-                    <div class="btn_filter">
-                        <button type="submit">Suscribirse</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <!-- Ventana modal de suscripción -->
-        <div id="subscribeModal" class="modal hidden">
-            <div class="modal-content">
-                <button class="close-btn" id="closeSubscribe">
-                    <img src="./img/icons/close.png" alt="Cerrar" />
-                </button>
-
-                <h2 class="title_window">Suscríbete</h2>
-                <form id="subscribeForm" method="POST" action="php/insertUser.php">
-                    <!-- Nombre -->
-                    <label>Nombre</label>
-                    <input type="text" name="name" placeholder="Tu nombre"
+                    <!-- Apellido -->
+                    <label>Apellido</label>
+                    <input type="text" name="surname" placeholder="Tu apellido"
                         pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" required />
 
                     <!-- Email -->
@@ -292,39 +266,6 @@ if ($result->num_rows == 0) {
                 </form>
             </div>
         </div>
-
-
-        <!-- Ventana modal de suscripción -->
-        <div id="subscribeModal" class="modal hidden">
-            <div class="modal-content">
-                <button class="close-btn" id="closeSubscribe">
-                    <img src="./img/icons/close.png" alt="Cerrar" />
-                </button>
-
-                <h2 class="title_window">Suscríbete</h2>
-                <form id="subscribeForm" method="POST" action="php/insertUser.php">
-                    <!-- Nombre -->
-                    <label>Nombre</label>
-                    <input type="text" name="name" placeholder="Tu nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
-                        title="Solo letras y espacios" required />
-
-                    <!-- Email -->
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Tu email" required />
-
-                    <!-- Checkbox -->
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required />
-                        Acepto los <a href="#">términos y condiciones</a>
-                    </label>
-
-                    <div class="btn_filter">
-                        <button type="submit">Suscribirse</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
 
 
         <div class="killersContainer" id="killersContainer">
@@ -384,9 +325,6 @@ if ($result->num_rows == 0) {
                         slidesToScroll: 1
                     }
                     }
-                    // You can unslick at a given breakpoint now by adding:
-                    // settings: "unslick"
-                    // instead of a settings object
                 ]
             });
         });

@@ -19,3 +19,4 @@ setupModal('filterIcon', 'closeFilter', 'filterModal');
 
 // Modal de suscripción (usando userIcon)
 setupModal('userIcon', 'closeSubscribe', 'subscribeModal');
+

@@ -22,17 +22,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-// Busca el botón que inicia la animación
-const slideButton = document.getElementById('slideBtn');
 
-slideButton.addEventListener('click', function() {
-  // Tu código existente para animar el masthead
-  document.querySelector('.masthead').classList.add('visible');
-  
-  // Añade esta línea para habilitar el scroll nuevamente
-  document.body.style.overflow = 'auto'; 
-});
-
-}
 
