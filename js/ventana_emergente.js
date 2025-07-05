@@ -11,6 +11,20 @@ function setupModal(openBtnId, closeBtnId, modalId) {
         closeBtn.addEventListener('click', () => {
             modal.classList.add('hidden');
         });
+
+        // Cerrar al hacer clic fuera del contenido del modal
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // Cerrar al presionar la tecla "Escape"
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+            }
+        });
     }
 }
 
@@ -19,4 +33,3 @@ setupModal('filterIcon', 'closeFilter', 'filterModal');
 
 // Modal de suscripción (usando userIcon)
 setupModal('userIcon', 'closeSubscribe', 'subscribeModal');
-
