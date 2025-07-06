@@ -629,3 +629,86 @@ body {
 .accordion-button:focus {
   box-shadow: none;
 }
+
+/* ================================================================== */
+/* -------------------- RESPONSIVE DESIGN (MÓVIL) ------------------- */
+/* ================================================================== */
+
+/* Para tablets y dispositivos medianos (hasta 992px) */
+@media (max-width: 992px) {
+    .contentLayout {
+        flex-direction: column; /* Apila el expediente y el video */
+        align-items: center; /* Centra el contenido */
+        gap: 40px; /* Reduce el espacio entre expediente y video */
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .expediente {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+
+    .videoContainer {
+        order: -1; /* Mueve el video antes del texto de información general */
+        margin-right: 0;
+        width: 80%; /* Ajusta el ancho del video */
+        max-width: 500px;
+    }
+
+    .profilePic {
+        left: 20px; /* Reduce el espacio desde la izquierda */
+    }
+
+    .homeContainer {
+        right: 20px; /* Reduce el espacio desde la derecha */
+    }
+}
+
+
+/* Para teléfonos móviles (hasta 768px) */
+@media (max-width: 768px) {
+    /* --- AJUSTES GENERALES --- */
+    body {
+        background-size: cover; /* Ajusta el fondo para que cubra mejor */
+    }
+
+    /* --- HEADER Y FOTO DE PERFIL --- */
+    .headerKiller {
+        position: relative; /* Deja de ser fijo */
+        height: auto; /* Altura automática */
+        padding-top: 20px;
+        padding-bottom: 20px;
+        z-index: 1;
+    }
+
+    .profilePic {
+        position: relative; /* Deja de ser fijo */
+        top: 0;
+        left: 0;
+        flex-direction: column; /* Apila la imagen y el texto */
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .profilePic img { width: 100px; height: 100px; }
+    .profilePic h2 { font-size: 2rem; }
+    .profilePic h3 { font-size: 1rem; }
+
+    .homeContainer { position: absolute; top: 15px; right: 15px; }
+    .homeContainer:hover { transform: none; }
+
+    /* --- CONTENIDO PRINCIPAL --- */
+    .contentLayout .upContainer { display: none; } /* Ocultamos el profile pic duplicado */
+    .contentLayout { margin-top: 20px; margin-bottom: 100px; padding: 0 15px; }
+    .expediente section[id] { scroll-margin-top: 20px; }
+    .expediente p { font-size: 1.1rem; }
+    .informacion .row { flex-direction: column; }
+    .videoContainer { width: 100%; margin-bottom: 20px; }
+
+    /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
+    .nav { padding: 5px 0; }
+    .nav-item > * { font-size: 14px; padding: 8px 5px; }
+}
