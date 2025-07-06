@@ -42,7 +42,7 @@ if (!$killer) {
 
     <!-- BARRA DE NAVEGACIÓN -->
 
-    <div class="navbar ">
+    <div class="navbar" id="mainNav">
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link" href="#informacion" alt="Información">Información</a></li>
             <li class="nav-item"><a class="nav-link" href="#perfilPsicologico" alt="Perfil Psicológico">Perfil psicológico</a></li>
@@ -69,16 +69,6 @@ if (!$killer) {
     </header>
 
     <main class="contentLayout">
-        <div class="upContainer">
-            <div class="profilePic">
-                <img src="img/<?= $killer['profile_picture'] ?>" alt="<?= $killer['alias'] ?>">
-                <div>
-                    <h2><?= strtoupper($killer['alias']) ?></h2>
-                    <h3><?= $killer['name_descrip_killer'] ?></h3>
-                </div>
-            </div>
-
-        </div>
 
         <!-- TEXTO EXPEDIENTE -->
         <div class="expediente">
@@ -131,12 +121,12 @@ if (!$killer) {
                             <h2 class="accordion-header" id="heading<?= $index ?>">
                                 <button class="accordion-button <?= $isCollapsed ?>" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse<?= $index ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="collapse<?= $index ?>">
-                                    <?= htmlspecialchars($victima['name_victims']) ?>
+                                    <?= htmlspecialchars($victima['name_victims']) ?> <?= htmlspecialchars($victima['surname_victims']) ?> (<?= $victima['age_victims'] ?> ) - <?= htmlspecialchars($victima['date_murder'])?>
                                 </button>
                             </h2>
                             <div id="collapse<?= $index ?>" class="accordion-collapse collapse <?= $isFirst ?>" aria-labelledby="heading<?= $index ?>" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <strong><?= nl2br(htmlspecialchars($victima['info'])) ?></strong>
+                                   <p><?= nl2br(htmlspecialchars($victima['info'])) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -162,6 +152,8 @@ if (!$killer) {
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script src='/js/myScript.js'></script>
+    <script src="js/navbar.js"></script>
+
 
 </body>
 

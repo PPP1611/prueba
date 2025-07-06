@@ -55,17 +55,17 @@ h1 {
 
 .masthead.visible {
   background-position: bottom;
-  
+
 }
 
 /* Desplazar títulos cuando el botón ha sido presionado */
-header.masthead section#start {
+header.masthead #start {
   opacity: 1;
   transform: translateY(0);
   transition: transform 1s ease-out;
 }
 
-header.masthead.visible section#start {
+header.masthead.visible #start {
   transform: translateY(-100%);
   pointer-events: none;
 }
@@ -95,12 +95,12 @@ header.masthead.visible .arrow {
   left: 50%;
   top: 100%;
   /* Comienza justo debajo del borde inferior del viewport */
-  transform: translateX(-50%);
+  transform: translate(50%);
   /* Centrado horizontal */
   opacity: 0;
   visibility: hidden;
   /* Inicialmente oculto */
-  transition: top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease-out, visibility 0s 0.7s;
+  /* transition: top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease-out, visibility 0s 0.7s; */
   /* Transición suave para top y opacidad */
   display: flex;
   /*Para alinear los botones */
@@ -113,19 +113,18 @@ header.masthead.visible .arrow {
   width: 1200px;
   height: auto;
   padding: 20px;
-  
+
   /* z-index: 1000; Asegura que esté por encima de otro contenido */
-    /* background-color: rgba(30, 30, 30, 0.85); Fondo semitransparente */
+  /* background-color: rgba(30, 30, 30, 0.85); Fondo semitransparente */
 
 }
 
-
-
 .killersContainer.visible {
-  top: 60%;
+  top: 33%;
   /* Posición final: centro vertical del viewport */
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   /* Ajuste para centrar el elemento completamente */
+  position: fixed;
   opacity: 1;
   visibility: visible;
   transition: top 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease-out, visibility 0s 0s;
@@ -155,18 +154,24 @@ header.masthead.visible .arrow {
   /* border-radius: 6px; Bordes redondeados para las imágenes */
 }
 
-.slick-arrow {
-  size: 200%;
-  color: white;
-}
-
-.slick-prev {
-  left: 50px;
-  size: 200%;
-}
-
+/* Estilo para los botones de flecha del carrusel */
+.slick-prev,
 .slick-next {
-  right: 300px;
+  width: 60px !important;
+  /* Ancho del área del botón */
+  height: 60px !important;
+  /* Alto del área del botón */
+  z-index: 1;
+  /* Asegura que estén por encima de las imágenes */
+}
+
+/* Estilo para el icono de la flecha (el glifo) */
+.slick-prev::before,
+.slick-next::before {
+  font-size: 60px !important;
+  /* Tamaño del icono de la flecha */
+  color: white;
+  /* Asegura que el color sea blanco */
 }
 
 /* -------------- */
@@ -186,6 +191,9 @@ header.masthead.visible .arrow {
 }
 
 
+
+
+
 /* ------------------------------------------------------------------ */
 /* -------------------- CONTENEDOR USER/FILTER -------------------- */
 /* ------------------------------------------------------------------ */
@@ -193,13 +201,13 @@ header.masthead.visible .arrow {
 #userContainer {
   position: fixed;
   /* Posicionamiento fijo en la pantalla */
-  top: 50px;
+  top: 130px;
   /* Distancia desde la parte superior */
-  right: 60px;
+  right: 80px;
   /* Distancia desde la parte derecha */
   display: flex;
   /* Para alinear los botones hijos (user y filter) */
-  gap: 25px;
+  gap: 40px;
   /* Espacio entre los botones user y filter */
 
   /* Inicialmente oculto con transición */
@@ -215,12 +223,12 @@ header.masthead.visible .arrow {
   visibility: visible;
   transform: translateY(0);
   /* Posición final */
-  transition: opacity 0.5s ease-out, visibility 0s 0s, transform 0.5s ease-out;
+  transition: opacity 1.5s ease-out, visibility 0s 0s, transform 0.5s ease-out;
 }
 
 #userContainer button {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: none;
   background-color: rgba(255, 255, 255, 0.877);
@@ -233,6 +241,11 @@ header.masthead.visible .arrow {
   overflow: hidden;
   /* Para que la imagen no se salga */
 }
+
+#userContainer button:hover {
+  transform: scale(1.15);
+}
+
 
 /* FILTRO */
 /* Modal general */
@@ -404,18 +417,12 @@ body {
 }
 
 .homeContainer {
-  /* cursor: pointer; */
-  /* line-height: 1; */
-  /* Para asegurar que el icono esté centrado si es un <i> */ 
   position: absolute;
   top: 60px;
-  right: 3%; 
+  right: 3%;
   /* z-index: 10; */
   position: fixed;
-  /* display: inline-block;  */
-  /* Para que la transformación se aplique correctamente */
   transition: all 0.2s ease-in-out;
-
 }
 
 .homeContainer:hover {
@@ -428,12 +435,15 @@ body {
 
 .headerKiller {
   background-color: rgb(104, 105, 78);
-  height: 170px; /* Altura para cubrir el espacio del encabezado */
+  height: 170px;
+  /* Altura para cubrir el espacio del encabezado */
   width: 100%;
-  position: fixed; /* Fija el elemento en la parte superior */
+  position: fixed;
+  /* Fija el elemento en la parte superior */
   top: 0;
   left: 0;
-  z-index: 990; /* Asegura que esté detrás de otros elementos como la foto de perfil */
+  z-index: 990;
+  /* Asegura que esté detrás de otros elementos como la foto de perfil */
 }
 
 /* -------------------- BARRA NAVEGACIÓN --------------------------- */
@@ -485,6 +495,14 @@ body {
   color: #020202;
   border: none;
 
+  /* Estilo para el elemento ACTIVO en la navbar */
+  .nav-item-active {
+    background-color: rgb(106, 107, 79);
+    /* Mismo color que el hover para consistencia */
+    color: #020202 !important;
+    /* Aseguramos que el color del texto cambie */
+  }
+
 }
 
 /* -------------------- FOTO PERFIL --------------------------- */
@@ -526,7 +544,7 @@ body {
 .profilePic h2 {
   font-weight: bold;
   text-align: left;
-  size:10px;
+  size: 10px;
 }
 
 /* -------------------- CONTENEDOR VIDEO --------------------------- */
@@ -569,7 +587,7 @@ body {
   /* Espacio para el .profilePic fijo en el header */
   margin-bottom: 150px;
   /* Espacio para la navbar fija en la parte inferior */
-  
+
 }
 
 .contentLayout .expediente h2 {
@@ -601,6 +619,15 @@ body {
 
 /* -------------------- CONTENEDOR ACORDEON VICTIMAS --------------------------- */
 
+.accordion {
+  padding-bottom: 35px;
+  padding-top: 25px;
+}
+
+.accordion p {
+  font-size: 130%;
+}
+
 .accordion-button:not(.collapsed) {
   background-color: #6a6b4f;
   color: white;
@@ -630,85 +657,202 @@ body {
   box-shadow: none;
 }
 
-/* ================================================================== */
-/* -------------------- RESPONSIVE DESIGN (MÓVIL) ------------------- */
-/* ================================================================== */
+/* ------------------------------------------------------------------ */
+/* -------------------- MEDIA QUERIES RESPONSIVE -------------------- */
+/* ------------------------------------------------------------------ */
 
-/* Para tablets y dispositivos medianos (hasta 992px) */
-@media (max-width: 992px) {
-    .contentLayout {
-        flex-direction: column; /* Apila el expediente y el video */
-        align-items: center; /* Centra el contenido */
-        gap: 40px; /* Reduce el espacio entre expediente y video */
-        margin-left: 20px;
-        margin-right: 20px;
-    }
 
-    .expediente {
-        margin-left: 0;
-        margin-right: 0;
-        width: 100%; /* Ocupa todo el ancho disponible */
-    }
+@media (max-height: 1424px) {
+    header.masthead.visible #start {
+    transform: translateY(-200%);
+    pointer-events: none;
+  }
+}
 
-    .videoContainer {
-        order: -1; /* Mueve el video antes del texto de información general */
-        margin-right: 0;
-        width: 80%; /* Ajusta el ancho del video */
-        max-width: 500px;
-    }
+/* Para tablets y pantallas medianas (hasta 1024px) */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 800%;
+  }
 
-    .profilePic {
-        left: 20px; /* Reduce el espacio desde la izquierda */
-    }
+  .masthead h2 {
+    font-size: 130%;
+  }
 
-    .homeContainer {
-        right: 20px; /* Reduce el espacio desde la derecha */
-    }
+  .killersContainer {
+    width: 90%;
+    /* Ocupa más ancho de pantalla */
+    gap: 20px;
+  }
+
+  .killersContainer h2 {
+    font-size: 150%;
+  }
+
+  .killersContainer h3 {
+    font-size: 110%;
+  }
+
+  #userContainer {
+    top: 20px;
+    right: 20px;
+    gap: 20px;
+  }
+
+  #userContainer button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .contentLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .expediente {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .videoContainer {
+    margin-right: 0;
+    width: 100%;
+    max-width: 560px;
+    /* Límite para el video */
+    padding-bottom: 7%;
+  }
+
+  .profilePic {
+    left: 20px;
+    gap: 7px;
+  }
+
+  .homeContainer {
+    right: 50%;
+    max-width: 40px;
+  }
+
+  .nav-item>* {
+    font-size: 18px;
+  }
+}
+
+/* Para tablets pequeñas y móviles grandes (hasta 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 500%;
+  }
+
+  .masthead h2 {
+    font-size: 110%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .headerKiller {
+    height: auto;
+    padding-bottom: 20px;
+    position: relative;
+    /* Deja de ser fijo */
+  }
+
+  .profilePic {
+    position: relative;
+    /* Deja de ser fijo */
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .homeContainer {
+    position: relative;
+    /* Relativo al headerKiller */
+    top: 15px;
+    left: 44%;
+    max-width: 40px;
+  }
+
+  .contentLayout {
+    margin-top: 20px;
+    /* Menos margen superior */
+  }
+
+  .expediente section[id] {
+    scroll-margin-top: 20px;
+    /* Ajuste para el anclaje sin header fijo */
+  }
+
+  .nav {
+    padding: 5px 0;
+  }
+
+  .nav-item>* {
+    font-size: 14px;
+    padding: 8px 5px;
+  }
+}
+
+/* Para móviles (hasta 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 350%;
+  }
+
+  .masthead h2 {
+    font-size: 120%;
+  }
+
+  header.masthead.visible #start {
+    transform: translateY(-140%);
+    pointer-events: none;
+  }
+
+  #userContainer {
+    /* flex-direction: column;  */
+    /* Apila los iconos verticalmente */
+    top: 28%;
+    right: 37%;
+    gap: 15%;
+  }
+
+  #userContainer button {
+    width: 50px;
+    height: 50px;
+  }
+
+/* Estilo para el contenedor de los botones de asesinos */
+.killersContainer {
+  width: 300%;
+  height: auto;
+}
+
+.killersContainer.visible {
+  top: 38%;
 }
 
 
-/* Para teléfonos móviles (hasta 768px) */
-@media (max-width: 768px) {
-    /* --- AJUSTES GENERALES --- */
-    body {
-        background-size: cover; /* Ajusta el fondo para que cubra mejor */
-    }
+#killersContainer button img {
+  width: 150px;
+  height: auto;
+}
 
-    /* --- HEADER Y FOTO DE PERFIL --- */
-    .headerKiller {
-        position: relative; /* Deja de ser fijo */
-        height: auto; /* Altura automática */
-        padding-top: 20px;
-        padding-bottom: 20px;
-        z-index: 1;
-    }
 
-    .profilePic {
-        position: relative; /* Deja de ser fijo */
-        top: 0;
-        left: 0;
-        flex-direction: column; /* Apila la imagen y el texto */
-        text-align: center;
-        width: 100%;
-        padding: 10px;
-    }
+  .date-range {
+    flex-direction: column;
+  }
 
-    .profilePic img { width: 100px; height: 100px; }
-    .profilePic h2 { font-size: 2rem; }
-    .profilePic h3 { font-size: 1rem; }
+  .nav-item>* {
+    font-size: 12px;
+  }
 
-    .homeContainer { position: absolute; top: 15px; right: 15px; }
-    .homeContainer:hover { transform: none; }
-
-    /* --- CONTENIDO PRINCIPAL --- */
-    .contentLayout .upContainer { display: none; } /* Ocultamos el profile pic duplicado */
-    .contentLayout { margin-top: 20px; margin-bottom: 100px; padding: 0 15px; }
-    .expediente section[id] { scroll-margin-top: 20px; }
-    .expediente p { font-size: 1.1rem; }
-    .informacion .row { flex-direction: column; }
-    .videoContainer { width: 100%; margin-bottom: 20px; }
-
-    /* --- BARRA DE NAVEGACIÓN INFERIOR --- */
-    .nav { padding: 5px 0; }
-    .nav-item > * { font-size: 14px; padding: 8px 5px; }
+  .expediente p {
+    font-size: 1rem;
+  }
 }
