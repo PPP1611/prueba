@@ -662,12 +662,7 @@ body {
 /* ------------------------------------------------------------------ */
 
 
-@media (max-height: 1424px) {
-    header.masthead.visible #start {
-    transform: translateY(-200%);
-    pointer-events: none;
-  }
-}
+
 
 /* Para tablets y pantallas medianas (hasta 1024px) */
 @media (max-width: 1024px) {
