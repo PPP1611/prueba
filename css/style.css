@@ -297,6 +297,7 @@ input[type="email"] {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 
 
 #title_window h2, #subscribe_window h2{
@@ -304,6 +305,13 @@ input[type="email"] {
 }
 
 
+=======
+.title_window {
+  color: black;
+  text-align: left;
+}
+
+>>>>>>> cd81d813cad284093c85bd546c41e2fdcd3264d3
 .date-range {
   display: flex;
   gap: 10px;
@@ -369,9 +377,13 @@ select {
   background-size: 16px 16px;
   cursor: pointer;
 }
+<<<<<<< HEAD
 .title_window {
     color: black;
   }
+=======
+
+>>>>>>> cd81d813cad284093c85bd546c41e2fdcd3264d3
 
 
 
@@ -661,12 +673,15 @@ body {
   box-shadow: none;
 }
 
+<<<<<<< HEAD
 .accordion-button p {
   
   font-size: 1.15rem;
   color: white
 }
 
+=======
+>>>>>>> cd81d813cad284093c85bd546c41e2fdcd3264d3
 /* ------------------------------------------------------------------ */
 /* -------------------- MEDIA QUERIES RESPONSIVE -------------------- */
 /* ------------------------------------------------------------------ */
@@ -779,7 +794,11 @@ body {
   .homeContainer {
     position: relative;
     /* Relativo al headerKiller */
+<<<<<<< HEAD
     top: 13px;
+=======
+    top: 15px;
+>>>>>>> cd81d813cad284093c85bd546c41e2fdcd3264d3
     left: 44%;
     max-width: 40px;
   }
