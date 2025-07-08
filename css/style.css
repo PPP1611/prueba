@@ -297,10 +297,12 @@ input[type="email"] {
   box-sizing: border-box;
 }
 
-.title_window {
-  color: black;
-  text-align: left;
+
+
+#title_window h2, #subscribe_window h2{
+    color: black;
 }
+
 
 .date-range {
   display: flex;
@@ -367,7 +369,9 @@ select {
   background-size: 16px 16px;
   cursor: pointer;
 }
-
+.title_window {
+    color: black;
+  }
 
 
 
@@ -657,6 +661,12 @@ body {
   box-shadow: none;
 }
 
+.accordion-button p {
+  
+  font-size: 1.15rem;
+  color: white
+}
+
 /* ------------------------------------------------------------------ */
 /* -------------------- MEDIA QUERIES RESPONSIVE -------------------- */
 /* ------------------------------------------------------------------ */
@@ -769,7 +779,7 @@ body {
   .homeContainer {
     position: relative;
     /* Relativo al headerKiller */
-    top: 15px;
+    top: 13px;
     left: 44%;
     max-width: 40px;
   }

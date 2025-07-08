@@ -86,7 +86,7 @@ if (!$killer) {
                         <div class="videoContainer">
                             <div class="video">
                                 <video controls class="w-100">
-                                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4">
+                                    <source src="vd/<?= $killer['video_killer'] ?>" type="video/mp4" alt="Video resumen del caso">
                                 </video>
                             </div>
                         </div>
@@ -121,7 +121,8 @@ if (!$killer) {
                             <h2 class="accordion-header" id="heading<?= $index ?>">
                                 <button class="accordion-button <?= $isCollapsed ?>" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse<?= $index ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="collapse<?= $index ?>">
-                                    <?= htmlspecialchars($victima['name_victims']) ?> <?= htmlspecialchars($victima['surname_victims']) ?> (<?= $victima['age_victims'] ?> ) - <?= htmlspecialchars($victima['date_murder'])?>
+                                    <p><?= htmlspecialchars($victima['name_victims']) ?> <?= htmlspecialchars($victima['surname_victims']) ?> 
+                                    (<?= $victima['age_victims'] ?> ) - <?= htmlspecialchars($victima['date_murder'])?></p>
                                 </button>
                             </h2>
                             <div id="collapse<?= $index ?>" class="accordion-collapse collapse <?= $isFirst ?>" aria-labelledby="heading<?= $index ?>" data-bs-parent="#accordionExample">

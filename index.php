@@ -21,9 +21,6 @@ if (!empty($_GET['alias'])) {
 // Filtro por cantidad de víctimas
 if (!empty($_GET['victims_number'])) {
     $victims_number = $conexion->real_escape_string($_GET['victims_number']);
-    // $where[] = "v.name_victims LIKE '%$victim%'";
-    // $useVictimsJoin = true;
-    // $groupBy = false;
     $where[] = "ki.victims_number LIKE '%$victims_number%'";
 }
 
