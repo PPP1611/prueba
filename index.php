@@ -31,7 +31,7 @@ if (!empty($_GET['victims_number'])) {
 if (!empty($_GET['start_year'])) {
     $start = (int) $_GET['start_year'];
     if ($start >= 1800 && $start <= (int) date("Y")) {
-        $where[] = "ki.period_start >= $start";
+        $where[] = "ki.period_activity_init >= $start";
     }
 }
 
@@ -39,7 +39,7 @@ if (!empty($_GET['start_year'])) {
 if (!empty($_GET['end_year'])) {
     $end = (int) $_GET['end_year'];
     if ($end >= 1800 && $end <= (int) date("Y")) {
-        $where[] = "ki.period_end <= $end";
+        $where[] = "ki.period_activity_end <= $end";
     }
 }
 

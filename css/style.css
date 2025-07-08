@@ -513,7 +513,7 @@ body {
   /* Fija el elemento en la ventana del navegador */
   top: 5px;
   /* Distancia desde la parte superior */
-  left: 65px;
+  left: 40%;
   /* Distancia desde la parte izquierda */
   display: flex;
   /* Habilita Flexbox para alinear los elementos hijos (imagen y texto) */
@@ -595,10 +595,10 @@ body {
 }
 
 .expediente {
-  margin-left: -28px;
+  margin-left: 105px;
   margin-right: 110px;
   margin-top: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .expediente section[id] {
@@ -721,7 +721,7 @@ body {
   }
 
   .profilePic {
-    left: 20px;
+    left: 500px;
     gap: 7px;
   }
 
